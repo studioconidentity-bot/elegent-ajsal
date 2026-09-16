@@ -1,0 +1,6 @@
+{
+  "name": "Cinematic Scroll Hero",
+  "description": "Luxury 9:16 mobile architectural hardware campaign cover with scroll-driven scrubbing, central brand identity, and minimal editorial typography.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

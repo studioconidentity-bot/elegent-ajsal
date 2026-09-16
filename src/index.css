@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-playfair: 'Playfair Display', Georgia, serif;
+    --font-signature: 'Alex Brush', cursive;
+    --font-cinzel: 'Cinzel', serif;
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+}
+
+.font-serif-luxury {
+  font-family: var(--font-serif);
+}
+
+.font-serif-playfair {
+  font-family: var(--font-playfair);
+}
+
+.font-signature {
+  font-family: var(--font-signature);
+}
+
+.font-cinzel {
+  font-family: var(--font-cinzel);
+}
+
+.font-sans-luxury {
+  font-family: var(--font-sans);
+}
+
+/* Custom subtle film grain overlay */
+.film-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+}
+
+/* Subtle luxury scroll indicator pulse */
+@keyframes subtlePulse {
+  0%, 100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translateY(4px);
+  }
+}
+
+.animate-subtle-pulse {
+  animation: subtlePulse 2.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Hide scrollbar for clean luxury view while keeping scrolling enabled */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* GPU Acceleration for silky 60fps/120fps mobile & Android rendering */
+.gpu-accelerated {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}

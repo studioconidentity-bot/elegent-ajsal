@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth bg-[#09090b] text-[#f4f4f5]">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>Cinematic Scroll Hero</title>
+    <meta name="description" content="Luxury 9:16 mobile architectural hardware campaign cover with scroll-driven scrubbing, central brand identity, and minimal editorial typography." />
+    <meta property="og:title" content="Cinematic Scroll Hero" />
+    <meta property="og:description" content="Luxury 9:16 mobile architectural hardware campaign cover with scroll-driven scrubbing, central brand identity, and minimal editorial typography." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Performance Preconnects -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
+    <link rel="dns-prefetch" href="https://res.cloudinary.com">
+
+    <!-- Preload critical above-the-fold hero visual assets -->
+    <link rel="preload" as="image" href="/mobile_hero_cover.jpg" media="(max-width: 767px)" fetchpriority="high">
+    <link rel="preload" as="image" href="/desktop_hero_cover.jpg" media="(min-width: 768px)" fetchpriority="high">
+    <link rel="preload" as="image" href="/elegant_wordmark.png" fetchpriority="high">
+    <link rel="preload" as="video" href="/scrub_video.mp4" type="video/mp4" media="(max-width: 767px)">
+
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body class="antialiased selection:bg-white selection:text-black bg-black">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
