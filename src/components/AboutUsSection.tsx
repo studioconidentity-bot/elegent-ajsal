@@ -3,7 +3,6 @@ import React from 'react';
 interface AboutUsSectionProps {
   storeImageUrl?: string;
   founderImageUrl?: string;
-  videoUrl?: string;
 }
 
 export const AboutUsSection: React.FC<AboutUsSectionProps> = ({

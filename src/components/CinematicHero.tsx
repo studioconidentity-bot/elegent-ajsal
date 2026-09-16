@@ -10,24 +10,24 @@ interface CinematicHeroProps {
 }
 
 export const CinematicHero: React.FC<CinematicHeroProps> = ({
-  videoUrl = '/scrub_video.mp4',
+  videoUrl = 'https://res.cloudinary.com/cbi5mcab/video/upload/v1789562362/ELEGET_itxxbb.mp4',
   mobileCoverImageUrl = '/mobile_hero_cover.jpg',
   desktopCoverImageUrl = '/desktop_hero_cover.jpg',
   logoUrl = '/elegant_wordmark.png',
   runwayVh = 380,
   lerpDamping = 0.09,
 }) => {
-  // Determine if device is mobile (< 768px) to exclusively enable video scrub on mobile
+  // Determine if device is mobile or tablet viewport (< 1024px)
   const [isMobile, setIsMobile] = useState<boolean>(() => {
     if (typeof window !== 'undefined') {
-      return window.innerWidth < 768;
+      return window.innerWidth < 1024;
     }
-    return false;
+    return true;
   });
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobile(window.innerWidth < 1024);
     };
     handleResize();
     window.addEventListener('resize', handleResize, { passive: true });
@@ -253,7 +253,7 @@ const MobileHeroScrubber: React.FC<MobileHeroScrubberProps> = ({
 
   const currentProgressRef = useRef<number>(0);
   const targetProgressRef = useRef<number>(0);
-  const durationRef = useRef<number>(14.23);
+  const durationRef = useRef<number>(8.02);
   const animFrameIdRef = useRef<number>(0);
   const isSeekingRef = useRef<boolean>(false);
   const pendingSeekTimeRef = useRef<number | null>(null);
@@ -265,12 +265,20 @@ const MobileHeroScrubber: React.FC<MobileHeroScrubberProps> = ({
     const typographyLayer = typographyLayerRef.current;
     if (!container || !video) return;
 
+    // Background video cache warm-up so all seeks hit browser RAM/disk cache
+    if (videoUrl && typeof window !== 'undefined' && 'fetch' in window) {
+      fetch(videoUrl, { mode: 'cors', cache: 'force-cache' }).catch(() => {});
+    }
+
     video.muted = true;
     video.playsInline = true;
     video.setAttribute('playsinline', '');
     video.setAttribute('webkit-playsinline', '');
     video.setAttribute('muted', '');
     video.preload = 'auto';
+
+    let lastSeekTimestamp = 0;
+    let rvfcId: number | null = null;
 
     const updateDuration = () => {
       if (video.duration && !isNaN(video.duration) && video.duration > 0) {
@@ -279,55 +287,103 @@ const MobileHeroScrubber: React.FC<MobileHeroScrubberProps> = ({
       video.pause();
     };
 
-    if (video.readyState >= 1) {
+    const primeDecoder = () => {
       updateDuration();
+      if (video.paused && video.readyState >= 1) {
+        const p = video.play();
+        if (p !== undefined) {
+          p.then(() => {
+            video.pause();
+          }).catch(() => {});
+        }
+      }
+    };
+
+    if (video.readyState >= 1) {
+      primeDecoder();
     }
-    video.addEventListener('loadedmetadata', updateDuration, { passive: true });
-    video.addEventListener('loadeddata', updateDuration, { passive: true });
-    video.addEventListener('canplay', updateDuration, { passive: true });
+    video.addEventListener('loadedmetadata', primeDecoder, { passive: true });
+    video.addEventListener('loadeddata', primeDecoder, { passive: true });
+    video.addEventListener('canplay', primeDecoder, { passive: true });
 
     // Non-blocking seek pipeline: executes seek when GPU finishes previous frame
     const executeSeek = (time: number) => {
       if (video.readyState < 1) return;
       isSeekingRef.current = true;
+      lastSeekTimestamp = performance.now();
       try {
-        if ('fastSeek' in video && typeof (video as any).fastSeek === 'function') {
-          (video as any).fastSeek(time);
-        } else {
-          video.currentTime = time;
-        }
+        video.currentTime = time;
       } catch {
         isSeekingRef.current = false;
       }
     };
 
-    const handleSeeked = () => {
+    const handleFrameReady = () => {
       isSeekingRef.current = false;
       if (pendingSeekTimeRef.current !== null) {
         const nextTime = pendingSeekTimeRef.current;
         pendingSeekTimeRef.current = null;
-        if (Math.abs(video.currentTime - nextTime) > 0.008) {
+        if (Math.abs(video.currentTime - nextTime) > 0.006) {
           executeSeek(nextTime);
         }
       }
     };
 
-    video.addEventListener('seeked', handleSeeked, { passive: true });
+    // Hardware V-Sync presentation callback (Chrome Android, Safari 15.4+)
+    const registerRVFC = () => {
+      if ('requestVideoFrameCallback' in video && typeof (video as any).requestVideoFrameCallback === 'function') {
+        rvfcId = (video as any).requestVideoFrameCallback(() => {
+          handleFrameReady();
+          registerRVFC();
+        });
+      }
+    };
+    registerRVFC();
+
+    video.addEventListener('seeked', handleFrameReady, { passive: true });
     video.load();
 
-    const handleScroll = () => {
+    // High-performance scroll tracking: cache container measurements to eliminate forced layout reflows
+    let containerTop = 0;
+    let containerHeight = 0;
+    let windowHeight = window.innerHeight;
+
+    const measureRunway = () => {
       const rect = container.getBoundingClientRect();
-      const scrollableDistance = rect.height - window.innerHeight;
+      const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+      containerTop = rect.top + scrollY;
+      containerHeight = rect.height;
+      windowHeight = window.innerHeight;
+    };
+
+    measureRunway();
+
+    const handleScroll = () => {
+      const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+      const scrollableDistance = containerHeight - windowHeight;
       if (scrollableDistance <= 0) return;
 
-      const scrolled = -rect.top;
+      const scrolled = scrollY - containerTop;
       const rawProgress = scrolled / scrollableDistance;
       targetProgressRef.current = Math.min(Math.max(rawProgress, 0), 1);
     };
 
+    const handleResizeOrOrient = () => {
+      measureRunway();
+      handleScroll();
+    };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll, { passive: true });
+    window.addEventListener('resize', handleResizeOrOrient, { passive: true });
+    window.addEventListener('orientationchange', handleResizeOrOrient, { passive: true });
     document.addEventListener('scroll', handleScroll, { passive: true });
+
+    // Sync with smooth scroll instance if active
+    const win = typeof window !== 'undefined' ? (window as any) : null;
+    if (win?.lenis && typeof win.lenis.on === 'function') {
+      win.lenis.on('scroll', handleScroll);
+    }
+
     handleScroll();
 
     const renderLoop = () => {
@@ -339,7 +395,7 @@ const MobileHeroScrubber: React.FC<MobileHeroScrubberProps> = ({
       }
 
       const progress = currentProgressRef.current;
-      const totalDuration = durationRef.current || 14.23;
+      const totalDuration = durationRef.current || 8.02;
       const safeDuration = Math.max(0.1, totalDuration - 0.05);
 
       // Cover Layer Crossfade
@@ -383,7 +439,11 @@ const MobileHeroScrubber: React.FC<MobileHeroScrubberProps> = ({
 
       if (video.readyState >= 1) {
         const timeDiff = Math.abs(video.currentTime - targetVideoTime);
-        if (timeDiff > 0.008) {
+        if (timeDiff > 0.006) {
+          const now = performance.now();
+          if (isSeekingRef.current && (now - lastSeekTimestamp > 90)) {
+            isSeekingRef.current = false;
+          }
           if (!isSeekingRef.current && !video.seeking) {
             executeSeek(targetVideoTime);
           } else {
@@ -399,15 +459,22 @@ const MobileHeroScrubber: React.FC<MobileHeroScrubberProps> = ({
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
+      window.removeEventListener('resize', handleResizeOrOrient);
+      window.removeEventListener('orientationchange', handleResizeOrOrient);
       document.removeEventListener('scroll', handleScroll);
-      video.removeEventListener('loadedmetadata', updateDuration);
-      video.removeEventListener('loadeddata', updateDuration);
-      video.removeEventListener('canplay', updateDuration);
-      video.removeEventListener('seeked', handleSeeked);
+      if (win?.lenis && typeof win.lenis.off === 'function') {
+        win.lenis.off('scroll', handleScroll);
+      }
+      if (rvfcId !== null && 'cancelVideoFrameCallback' in video) {
+        (video as any).cancelVideoFrameCallback(rvfcId);
+      }
+      video.removeEventListener('loadedmetadata', primeDecoder);
+      video.removeEventListener('loadeddata', primeDecoder);
+      video.removeEventListener('canplay', primeDecoder);
+      video.removeEventListener('seeked', handleFrameReady);
       cancelAnimationFrame(animFrameIdRef.current);
     };
-  }, [runwayVh, lerpDamping]);
+  }, [runwayVh, lerpDamping, videoUrl]);
 
   return (
     <div
@@ -432,9 +499,19 @@ const MobileHeroScrubber: React.FC<MobileHeroScrubberProps> = ({
             muted
             playsInline
             autoPlay={false}
+            crossOrigin="anonymous"
             disablePictureInPicture
+            disableRemotePlayback
             controls={false}
-            className="absolute inset-0 w-full h-full object-cover select-none will-change-transform transform-gpu z-0"
+            tabIndex={-1}
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-cover object-center select-none pointer-events-none z-0"
+            style={{
+              transform: 'translate3d(0, 0, 0)',
+              backfaceVisibility: 'hidden',
+              WebkitBackfaceVisibility: 'hidden',
+              filter: 'contrast(1.02) saturate(1.03)',
+            }}
           />
 
           {/* Cover Image Layer */}

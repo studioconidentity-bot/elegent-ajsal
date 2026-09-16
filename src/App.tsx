@@ -49,12 +49,12 @@ export default function App() {
         - Synchronized continuous rAF loop flowing like liquid water
       */}
       <CinematicHero
-        videoUrl="/scrub_video.mp4"
+        videoUrl="https://res.cloudinary.com/cbi5mcab/video/upload/v1789562362/ELEGET_itxxbb.mp4"
         mobileCoverImageUrl="/mobile_hero_cover.jpg"
         desktopCoverImageUrl="/desktop_hero_cover.jpg"
         logoUrl="/elegant_wordmark.png"
         runwayVh={380}
-        lerpDamping={0.12}
+        lerpDamping={0.16}
       />
 
       {/* 
@@ -64,7 +64,6 @@ export default function App() {
       <AboutUsSection
         storeImageUrl="https://res.cloudinary.com/cbi5mcab/image/upload/f_auto,q_auto/v1789558223/bg_bk1sis.png"
         founderImageUrl="https://res.cloudinary.com/cbi5mcab/image/upload/f_auto,q_auto/v1789558604/AJSAL_kjvbhi.png"
-        videoUrl="https://res.cloudinary.com/cbi5mcab/video/upload/v1789540943/ajsal_elk7ic.mp4"
       />
 
       {/* 
