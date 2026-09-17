@@ -10,7 +10,7 @@ interface CinematicHeroProps {
 }
 
 export const CinematicHero: React.FC<CinematicHeroProps> = ({
-  videoUrl = 'https://res.cloudinary.com/cbi5mcab/video/upload/v1789562362/ELEGET_itxxbb.mp4',
+  videoUrl = 'https://res.cloudinary.com/cbi5mcab/video/upload/v1789540943/ajsal_elk7ic.mp4',
   mobileCoverImageUrl = '/mobile_hero_cover.jpg',
   desktopCoverImageUrl = '/desktop_hero_cover.jpg',
   logoUrl = '/elegant_wordmark.png',
@@ -253,7 +253,7 @@ const MobileHeroScrubber: React.FC<MobileHeroScrubberProps> = ({
 
   const currentProgressRef = useRef<number>(0);
   const targetProgressRef = useRef<number>(0);
-  const durationRef = useRef<number>(8.02);
+  const durationRef = useRef<number>(14.25);
   const animFrameIdRef = useRef<number>(0);
   const isSeekingRef = useRef<boolean>(false);
   const pendingSeekTimeRef = useRef<number | null>(null);
@@ -395,7 +395,7 @@ const MobileHeroScrubber: React.FC<MobileHeroScrubberProps> = ({
       }
 
       const progress = currentProgressRef.current;
-      const totalDuration = durationRef.current || 8.02;
+      const totalDuration = durationRef.current || 14.25;
       const safeDuration = Math.max(0.1, totalDuration - 0.05);
 
       // Cover Layer Crossfade

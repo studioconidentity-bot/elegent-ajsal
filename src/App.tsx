@@ -49,7 +49,7 @@ export default function App() {
         - Synchronized continuous rAF loop flowing like liquid water
       */}
       <CinematicHero
-        videoUrl="https://res.cloudinary.com/cbi5mcab/video/upload/v1789562362/ELEGET_itxxbb.mp4"
+        videoUrl="https://res.cloudinary.com/cbi5mcab/video/upload/v1789540943/ajsal_elk7ic.mp4"
         mobileCoverImageUrl="/mobile_hero_cover.jpg"
         desktopCoverImageUrl="/desktop_hero_cover.jpg"
         logoUrl="/elegant_wordmark.png"
