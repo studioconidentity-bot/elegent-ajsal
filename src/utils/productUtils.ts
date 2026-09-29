@@ -1058,6 +1058,244 @@ export const getProductGallery = (product: Product, finish = 'Silver'): GalleryI
     ];
   }
 
+  // Specific handler for GLS-11 A1 FS Shower Sliding System — Full Set
+  if (product.code === 'GLS-11 A1 FS' || product.id === 'gls-11-a1-fs') {
+    const isBlack = finish.toLowerCase().includes('black');
+
+    const silverImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790690879/GLS-11_A1_S_k3zmh4.webp';
+    const blackImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790690878/GLS-11_A1_B_ykejio.webp';
+
+    const primaryImg = isBlack ? blackImg : silverImg;
+    const secondaryImg = isBlack ? silverImg : blackImg;
+
+    return [
+      {
+        id: `gls-11-a1-fs-${finish.toLowerCase()}-product`,
+        url: primaryImg,
+        caption: `${isBlack ? 'Black Matt (GLS-11 A1 BM FS — 2 Mtr.)' : 'Silver (GLS-11 A1 FS — 2 Mtr.)'} Finish Specification`,
+        tag: isBlack ? 'Black Matt' : 'Silver',
+      },
+      {
+        id: `gls-11-a1-fs-${isBlack ? 'silver' : 'black'}-variant`,
+        url: secondaryImg,
+        caption: `${isBlack ? 'Silver (GLS-11 A1 FS — 2 Mtr.)' : 'Black Matt (GLS-11 A1 BM FS — 2 Mtr.)'} Variant Reference`,
+        tag: isBlack ? 'Silver' : 'Black Matt',
+      },
+    ];
+  }
+
+  // Specific handler for GSL-22A Sliding Door System Full Set
+  if (product.code === 'GSL-22A' || product.id === 'gsl-22a') {
+    const isBlack = finish.toLowerCase().includes('black');
+
+    const silverImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790691005/GSL-22A_S_zsbj09.webp';
+    const blackImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790691005/GSL-22A_B_eay10q.webp';
+
+    const primaryImg = isBlack ? blackImg : silverImg;
+    const secondaryImg = isBlack ? silverImg : blackImg;
+
+    return [
+      {
+        id: `gsl-22a-${finish.toLowerCase()}-product`,
+        url: primaryImg,
+        caption: `${isBlack ? 'Black Matt' : 'Silver'} Finish Specification (GSL-22A Sliding Door System Full Set)`,
+        tag: isBlack ? 'Black Matt' : 'Silver',
+      },
+      {
+        id: `gsl-22a-${isBlack ? 'silver' : 'black'}-variant`,
+        url: secondaryImg,
+        caption: `${isBlack ? 'Silver' : 'Black Matt'} Variant Reference (GSL-22A)`,
+        tag: isBlack ? 'Silver' : 'Black Matt',
+      },
+    ];
+  }
+
+  // Specific handler for GSL-44-A1 Sliding Roller Set
+  if (product.code === 'GSL-44-A1' || product.id === 'gsl-44-a1') {
+    const isBlack = finish.toLowerCase().includes('black');
+
+    const silverImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790691172/GSL-44-A1_sq9kud.webp';
+    const blackImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790691173/GSL-44-A1_B_csska6.webp';
+
+    const primaryImg = isBlack ? blackImg : silverImg;
+    const secondaryImg = isBlack ? silverImg : blackImg;
+
+    return [
+      {
+        id: `gsl-44-a1-${finish.toLowerCase()}-product`,
+        url: primaryImg,
+        caption: `${isBlack ? 'Black Matt' : 'Silver'} Finish Specification (GSL-44-A1 Sliding Roller Set)`,
+        tag: isBlack ? 'Black Matt' : 'Silver',
+      },
+      {
+        id: `gsl-44-a1-${isBlack ? 'silver' : 'black'}-variant`,
+        url: secondaryImg,
+        caption: `${isBlack ? 'Silver' : 'Black Matt'} Variant Reference (GSL-44-A1)`,
+        tag: isBlack ? 'Silver' : 'Black Matt',
+      },
+    ];
+  }
+
+  // Specific handler for GSL-44-A2 Sliding Roller Set
+  if (product.code === 'GSL-44-A2' || product.id === 'gsl-44-a2') {
+    const isBlack = finish.toLowerCase().includes('black');
+
+    const silverImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790692802/GSL-44-A2_giwlcm.webp';
+    const blackImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790692802/b_GSL-44-A2_n06seg.webp';
+
+    const primaryImg = isBlack ? blackImg : silverImg;
+    const secondaryImg = isBlack ? silverImg : blackImg;
+
+    return [
+      {
+        id: `gsl-44-a2-${finish.toLowerCase()}-product`,
+        url: primaryImg,
+        caption: `${isBlack ? 'Black Matt (GSL-44-A2 BM)' : 'Silver (GSL-44-A2)'} Finish Specification`,
+        tag: isBlack ? 'Black Matt' : 'Silver',
+      },
+      {
+        id: `gsl-44-a2-${isBlack ? 'silver' : 'black'}-variant`,
+        url: secondaryImg,
+        caption: `${isBlack ? 'Silver (GSL-44-A2)' : 'Black Matt (GSL-44-A2 BM)'} Variant Reference`,
+        tag: isBlack ? 'Silver' : 'Black Matt',
+      },
+    ];
+  }
+
+  // Specific handler for GLK-1 Bullet Lock
+  if (product.code === 'GLK-1' || product.id === 'glk-1') {
+    const isBlack = finish.toLowerCase().includes('black');
+
+    const variantImg = isBlack
+      ? 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790694252/GLK-01_B_xbdugf.webp'
+      : 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790694252/GLK-01_mnkghc.webp';
+
+    const applicationImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790694252/GLK-01_A_d0u7gi.webp';
+
+    return [
+      {
+        id: `glk-1-${finish.toLowerCase()}-product`,
+        url: variantImg,
+        caption: `${isBlack ? 'Black Matt (GLK-1 BM)' : 'Silver (GLK-1)'} Finish Specification (Bullet Lock — Only Knob)`,
+        tag: isBlack ? 'Black Matt' : 'Silver',
+      },
+      {
+        id: 'glk-1-application',
+        url: applicationImg,
+        caption: 'Glass-to-Glass Bullet Lock / Rod Lock Application',
+        tag: 'Application',
+      },
+    ];
+  }
+
+  // Specific handler for GLK-2 Bullet Lock
+  if (product.code === 'GLK-2' || product.id === 'glk-2') {
+    const isBlack = finish.toLowerCase().includes('black');
+
+    const variantImg = isBlack
+      ? 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790694457/GLK-2_B_brzvr5.webp'
+      : 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790694458/GLK-2_yhih2j.webp';
+
+    const applicationImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790695539/GLK-2_B_A_s87n3n.webp';
+
+    return [
+      {
+        id: `glk-2-${finish.toLowerCase()}-product`,
+        url: variantImg,
+        caption: `${isBlack ? 'Black Matt (GLK-2 BM)' : 'Silver (GLK-2)'} Finish Specification (Wall-to-Glass Bullet Lock)`,
+        tag: isBlack ? 'Black Matt' : 'Silver',
+      },
+      {
+        id: 'glk-2-application',
+        url: applicationImg,
+        caption: 'Wall-to-Glass Bullet Lock / Rod Lock Application',
+        tag: 'Application',
+      },
+    ];
+  }
+
+  // Specific handler for GLK-3 Key & Knob Glass-to-Glass Lock
+  if (product.code === 'GLK-3' || product.id === 'glk-3') {
+    const isBlack = finish.toLowerCase().includes('black');
+
+    const variantImg = isBlack
+      ? 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790698886/GLK-3_B_dbekox.webp'
+      : 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790698882/GLK-3_S_edzro3.webp';
+
+    const applicationImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790698982/GLK_3_A_cgr4z6.webp';
+
+    return [
+      {
+        id: `glk-3-${finish.toLowerCase()}-product`,
+        url: variantImg,
+        caption: `${isBlack ? 'Black Matt (GLK-3 BM)' : 'Silver (GLK-3)'} Finish Specification (Key & Knob Glass-to-Glass Lock)`,
+        tag: isBlack ? 'Black Matt' : 'Silver',
+      },
+      {
+        id: 'glk-3-application',
+        url: applicationImg,
+        caption: 'Key & Knob Glass-to-Glass Lock Application',
+        tag: 'Application',
+      },
+    ];
+  }
+
+  // Specific handler for GLK-4 Key & Knob Wall-to-Glass Lock
+  if (product.code === 'GLK-4' || product.id === 'glk-4') {
+    const isBlack = finish.toLowerCase().includes('black');
+
+    const silverImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790699445/GLK_04_dhfszy.webp';
+    const blackImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790699447/GLK-04_B_vbnvpo.webp';
+
+    const primaryImg = isBlack ? blackImg : silverImg;
+    const secondaryImg = isBlack ? silverImg : blackImg;
+
+    return [
+      {
+        id: `glk-4-${finish.toLowerCase()}-product`,
+        url: primaryImg,
+        caption: `${isBlack ? 'Black Matt' : 'Silver'} Finish Specification (GLK-4 Key & Knob Wall-to-Glass Lock)`,
+        tag: isBlack ? 'Black Matt' : 'Silver',
+      },
+      {
+        id: `glk-4-${isBlack ? 'silver' : 'black'}-variant`,
+        url: secondaryImg,
+        caption: `${isBlack ? 'Silver' : 'Black Matt'} Variant Reference (GLK-4)`,
+        tag: isBlack ? 'Silver' : 'Black Matt',
+      },
+    ];
+  }
+
+  // Specific handler for GLK-9 Glass-to-Glass Lock — Key & Knob
+  if (product.code === 'GLK-9' || product.id === 'glk-9') {
+    const isBlack = finish.toLowerCase().includes('black');
+
+    const variantImg = isBlack
+      ? 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790699654/GLK-9_B_lsp7bu.webp'
+      : 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790699653/GLK-9_A_si1fcg.webp';
+
+    const secondaryImg = isBlack
+      ? 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790699653/GLK-9_A_si1fcg.webp'
+      : 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790699654/GLK-9_B_lsp7bu.webp';
+
+    return [
+      {
+        id: `glk-9-${finish.toLowerCase()}-product`,
+        url: variantImg,
+        caption: `${isBlack ? 'Black Matt' : 'Silver'} Finish Specification (GLK-9 Glass-to-Glass Lock — Key & Knob)`,
+        tag: isBlack ? 'Black Matt' : 'Silver',
+      },
+      {
+        id: 'glk-9-application',
+        url: secondaryImg,
+        caption: isBlack
+          ? 'Glass-to-Glass Lock — Key & Knob Application'
+          : 'Black Matt Variant & Application Reference (GLK-9)',
+        tag: isBlack ? 'Application' : 'Black / App',
+      },
+    ];
+  }
+
   if (product.galleryImages && product.galleryImages.length > 0) {
     return product.galleryImages.map((url, index) => ({
       id: `custom-${index}`,
@@ -1555,6 +1793,96 @@ export const getFinishImages = (product: Product): Record<string, string> => {
       'Black': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790409276/GKH-14_B_bwmkxd.webp',
       'Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790409279/GKH-14_S_birggw.webp',
       'Rose Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790409279/GKH-14_S_birggw.webp',
+    };
+  }
+
+  // GLS-11 A1 FS finishes with exact Cloudinary URLs
+  if (product.code === 'GLS-11 A1 FS' || product.id === 'gls-11-a1-fs') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790690879/GLS-11_A1_S_k3zmh4.webp',
+      'Black': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790690878/GLS-11_A1_B_ykejio.webp',
+      'Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790690879/GLS-11_A1_S_k3zmh4.webp',
+      'Rose Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790690879/GLS-11_A1_S_k3zmh4.webp',
+    };
+  }
+
+  // GSL-22A finishes with exact Cloudinary URLs
+  if (product.code === 'GSL-22A' || product.id === 'gsl-22a') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790691005/GSL-22A_S_zsbj09.webp',
+      'Black': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790691005/GSL-22A_B_eay10q.webp',
+      'Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790691005/GSL-22A_S_zsbj09.webp',
+      'Rose Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790691005/GSL-22A_S_zsbj09.webp',
+    };
+  }
+
+  // GSL-44-A1 finishes with exact Cloudinary URLs
+  if (product.code === 'GSL-44-A1' || product.id === 'gsl-44-a1') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790691172/GSL-44-A1_sq9kud.webp',
+      'Black': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790691173/GSL-44-A1_B_csska6.webp',
+      'Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790691172/GSL-44-A1_sq9kud.webp',
+      'Rose Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790691172/GSL-44-A1_sq9kud.webp',
+    };
+  }
+
+  // GSL-44-A2 finishes with exact Cloudinary URLs
+  if (product.code === 'GSL-44-A2' || product.id === 'gsl-44-a2') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790692802/GSL-44-A2_giwlcm.webp',
+      'Black': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790692802/b_GSL-44-A2_n06seg.webp',
+      'Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790692802/GSL-44-A2_giwlcm.webp',
+      'Rose Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790692802/GSL-44-A2_giwlcm.webp',
+    };
+  }
+
+  // GLK-1 finishes with exact Cloudinary URLs
+  if (product.code === 'GLK-1' || product.id === 'glk-1') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790694252/GLK-01_mnkghc.webp',
+      'Black': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790694252/GLK-01_B_xbdugf.webp',
+      'Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790694252/GLK-01_mnkghc.webp',
+      'Rose Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790694252/GLK-01_mnkghc.webp',
+    };
+  }
+
+  // GLK-2 finishes with exact Cloudinary URLs
+  if (product.code === 'GLK-2' || product.id === 'glk-2') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790694458/GLK-2_yhih2j.webp',
+      'Black': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790694457/GLK-2_B_brzvr5.webp',
+      'Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790694458/GLK-2_yhih2j.webp',
+      'Rose Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790694458/GLK-2_yhih2j.webp',
+    };
+  }
+
+  // GLK-3 finishes with exact Cloudinary URLs
+  if (product.code === 'GLK-3' || product.id === 'glk-3') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790698882/GLK-3_S_edzro3.webp',
+      'Black': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790698886/GLK-3_B_dbekox.webp',
+      'Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790698882/GLK-3_S_edzro3.webp',
+      'Rose Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790698882/GLK-3_S_edzro3.webp',
+    };
+  }
+
+  // GLK-4 finishes with exact Cloudinary URLs
+  if (product.code === 'GLK-4' || product.id === 'glk-4') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790699445/GLK_04_dhfszy.webp',
+      'Black': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790699447/GLK-04_B_vbnvpo.webp',
+      'Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790699445/GLK_04_dhfszy.webp',
+      'Rose Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790699445/GLK_04_dhfszy.webp',
+    };
+  }
+
+  // GLK-9 finishes with exact Cloudinary URLs
+  if (product.code === 'GLK-9' || product.id === 'glk-9') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790699653/GLK-9_A_si1fcg.webp',
+      'Black': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790699654/GLK-9_B_lsp7bu.webp',
+      'Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790699653/GLK-9_A_si1fcg.webp',
+      'Rose Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790699653/GLK-9_A_si1fcg.webp',
     };
   }
 

@@ -88,7 +88,16 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
     product.code === 'GKH-04' || product.id === 'gkh-04' ||
     product.code === 'GKH-12' || product.id === 'gkh-12' ||
     product.code === 'GKH-16' || product.id === 'gkh-16' ||
-    product.code === 'GKH-14' || product.id === 'gkh-14';
+    product.code === 'GKH-14' || product.id === 'gkh-14' ||
+    product.code === 'GLS-11 A1 FS' || product.id === 'gls-11-a1-fs' ||
+    product.code === 'GSL-22A' || product.id === 'gsl-22a' ||
+    product.code === 'GSL-44-A1' || product.id === 'gsl-44-a1' ||
+    product.code === 'GSL-44-A2' || product.id === 'gsl-44-a2' ||
+    product.code === 'GLK-1' || product.id === 'glk-1' ||
+    product.code === 'GLK-2' || product.id === 'glk-2' ||
+    product.code === 'GLK-3' || product.id === 'glk-3' ||
+    product.code === 'GLK-4' || product.id === 'glk-4' ||
+    product.code === 'GLK-9' || product.id === 'glk-9';
 
   const gallery = isDedicatedPatch
     ? baseGallery
@@ -234,7 +243,13 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
           {/* LEFT COLUMN: Large Product Image Gallery (7 cols) */}
           <div className="lg:col-span-7 space-y-4">
             {/* Primary Stage Image */}
-            <div className="relative aspect-square sm:aspect-square lg:aspect-16/11 w-full bg-white border border-[#E2E0D8] rounded-xs overflow-hidden group shadow-2xs">
+            <div
+              className={`relative ${
+                product.code === 'GLS-11 A1 FS' || product.id === 'gls-11-a1-fs'
+                  ? 'aspect-16/9'
+                  : 'aspect-square sm:aspect-square lg:aspect-16/11'
+              } w-full bg-white border border-[#E2E0D8] rounded-xs overflow-hidden group shadow-2xs`}
+            >
               <img
                 src={gallery[activeImageIndex]?.url || product.imageUrl}
                 alt={`${product.name} - ${gallery[activeImageIndex]?.caption}`}
@@ -267,7 +282,11 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 <button
                   key={img.id}
                   onClick={() => setActiveImageIndex(idx)}
-                  className={`relative aspect-[16/9] sm:aspect-[16/9] lg:aspect-square bg-white rounded-xs overflow-hidden border transition-all ${
+                  className={`relative ${
+                    product.code === 'GLS-11 A1 FS' || product.id === 'gls-11-a1-fs'
+                      ? 'aspect-16/9'
+                      : 'aspect-[16/9] sm:aspect-[16/9] lg:aspect-square'
+                  } bg-white rounded-xs overflow-hidden border transition-all ${
                     activeImageIndex === idx
                       ? 'border-[#141414] ring-1 ring-[#141414] shadow-xs'
                       : 'border-[#E2E0D8] opacity-75 hover:opacity-100 hover:border-[#8E8D86]'
@@ -572,6 +591,51 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               {(product.code === 'GKH-14' || product.id === 'gkh-14') && (
                 <div className="text-xs font-mono uppercase tracking-wider text-[#73726B] mt-1 font-medium">
                   PIPE-TO-PIPE T-CONNECTOR
+                </div>
+              )}
+              {(product.code === 'GLS-11 A1 FS' || product.id === 'gls-11-a1-fs') && (
+                <div className="text-xs font-mono uppercase tracking-wider text-[#73726B] mt-1 font-medium">
+                  GLS-11 A1 FS — 2 MTR. (BLACK VARIANT: GLS-11 A1 BM FS — 2 MTR.)
+                </div>
+              )}
+              {(product.code === 'GSL-22A' || product.id === 'gsl-22a') && (
+                <div className="text-xs font-mono uppercase tracking-wider text-[#73726B] mt-1 font-medium">
+                  OFFICE SLIDING DOOR SYSTEM FULL SET
+                </div>
+              )}
+              {(product.code === 'GSL-44-A1' || product.id === 'gsl-44-a1') && (
+                <div className="text-xs font-mono uppercase tracking-wider text-[#73726B] mt-1 font-medium">
+                  SLIDING ROLLER SET (2 ROLLERS, 2 STOPPERS, 1 FLOOR GUIDE)
+                </div>
+              )}
+              {(product.code === 'GSL-44-A2' || product.id === 'gsl-44-a2') && (
+                <div className="text-xs font-mono uppercase tracking-wider text-[#73726B] mt-1 font-medium">
+                  SLIDING ROLLER SET (BLACK MATT VARIANT: GSL-44-A2 BM)
+                </div>
+              )}
+              {(product.code === 'GLK-1' || product.id === 'glk-1') && (
+                <div className="text-xs font-mono uppercase tracking-wider text-[#73726B] mt-1 font-medium">
+                  GLASS-TO-GLASS LOCK — ROD LOCK (ONLY KNOB)
+                </div>
+              )}
+              {(product.code === 'GLK-2' || product.id === 'glk-2') && (
+                <div className="text-xs font-mono uppercase tracking-wider text-[#73726B] mt-1 font-medium">
+                  WALL-TO-GLASS LOCK — ROD LOCK (ONLY KNOB)
+                </div>
+              )}
+              {(product.code === 'GLK-3' || product.id === 'glk-3') && (
+                <div className="text-xs font-mono uppercase tracking-wider text-[#73726B] mt-1 font-medium">
+                  KEY & KNOB GLASS-TO-GLASS LOCK (VARIANT: GLK-3 BM)
+                </div>
+              )}
+              {(product.code === 'GLK-4' || product.id === 'glk-4') && (
+                <div className="text-xs font-mono uppercase tracking-wider text-[#73726B] mt-1 font-medium">
+                  KEY & KNOB WALL-TO-GLASS LOCK
+                </div>
+              )}
+              {(product.code === 'GLK-9' || product.id === 'glk-9') && (
+                <div className="text-xs font-mono uppercase tracking-wider text-[#73726B] mt-1 font-medium">
+                  GLASS-TO-GLASS LOCK — KEY & KNOB
                 </div>
               )}
 
