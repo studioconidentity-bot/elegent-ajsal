@@ -54,16 +54,45 @@ export const CategoryCollectionPage: React.FC<CategoryCollectionPageProps> = ({
     );
   }, [categoryName]);
 
-  // Categories in the same division for quick switching
+  // Categories in the same division for quick switching (top-level only)
   const siblingCategories = useMemo(() => {
-    return ALL_CATEGORIES.filter((c) => c.department === categoryMeta.department);
+    return ALL_CATEGORIES.filter(
+      (c) => c.department === categoryMeta.department && !c.parentCategory
+    );
   }, [categoryMeta.department]);
 
-  // All products strictly belonging to this category
-  const categoryProducts = useMemo(() => {
-    return PRODUCTS_CATALOGUE.filter(
-      (p) => p.category.toLowerCase() === categoryName.toLowerCase()
+  // Check if current view is Spider Fitting or one of its 5 subcategories
+  const isSpiderContext = useMemo(() => {
+    const lower = categoryName.toLowerCase();
+    return (
+      lower === 'spider fitting' ||
+      lower === 'spider without fin' ||
+      lower === 'spider with fin' ||
+      lower === 'fin plates' ||
+      lower === 'splice plates' ||
+      lower === 'routels' ||
+      categoryMeta.parentCategory === 'Spider Fitting'
     );
+  }, [categoryName, categoryMeta]);
+
+  // All products strictly belonging to this category or subcategory
+  const categoryProducts = useMemo(() => {
+    const target = categoryName.toLowerCase();
+    return PRODUCTS_CATALOGUE.filter((p) => {
+      if (target === 'spider fitting') {
+        return (
+          p.category.toLowerCase() === 'spider fitting' ||
+          p.subcategory?.toLowerCase().includes('spider') ||
+          p.subcategory?.toLowerCase().includes('fin') ||
+          p.subcategory?.toLowerCase().includes('splice') ||
+          p.subcategory?.toLowerCase().includes('routel')
+        );
+      }
+      return (
+        p.category.toLowerCase() === target ||
+        p.subcategory?.toLowerCase() === target
+      );
+    });
   }, [categoryName]);
 
   // Dynamic filter state
@@ -251,6 +280,17 @@ export const CategoryCollectionPage: React.FC<CategoryCollectionPageProps> = ({
             >
               {categoryMeta.department}
             </button>
+            {categoryMeta.parentCategory && (
+              <>
+                <ChevronRight className="w-3 h-3 text-[#AAA9A0] shrink-0" />
+                <button
+                  onClick={() => onSelectCategory(categoryMeta.parentCategory!)}
+                  className="hover:text-[#141414] uppercase transition-colors shrink-0"
+                >
+                  {categoryMeta.parentCategory}
+                </button>
+              </>
+            )}
             <ChevronRight className="w-3 h-3 text-[#AAA9A0] shrink-0" />
             <span className="text-[#141414] font-medium uppercase shrink-0">
               {categoryMeta.name}
@@ -348,6 +388,82 @@ export const CategoryCollectionPage: React.FC<CategoryCollectionPageProps> = ({
             })}
           </div>
         </div>
+
+        {/* 3.5 DEDICATED SPIDER FITTING 5-CATEGORY SELECTOR */}
+        {isSpiderContext && (
+          <div className="bg-[#EDEAE2] border border-[#DDDCD4] rounded-xs p-5 sm:p-6 mb-8">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+              <div>
+                <div className="inline-flex items-center gap-2 text-[10px] uppercase font-mono tracking-widest text-[#73726B] mb-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#141414]" />
+                  <span>Spider Fitting System Categories</span>
+                </div>
+                <h3 className="text-base sm:text-lg font-medium text-[#141414]">
+                  Facade Glazing Product Categories
+                </h3>
+              </div>
+              <span className="text-xs font-mono text-[#73726B]">
+                5 Specialized Sub-Categories
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5">
+              <button
+                onClick={() => onSelectCategory('Spider Fitting')}
+                className={`p-3 text-left rounded-xs border transition-all ${
+                  categoryName.toLowerCase() === 'spider fitting'
+                    ? 'bg-[#141414] text-[#FAF9F6] border-[#141414] shadow-xs'
+                    : 'bg-white text-[#2E2E2A] border-[#DDDCD4] hover:border-[#141414]'
+                }`}
+              >
+                <div className="text-[10px] font-mono tracking-wider opacity-70 mb-1">
+                  OVERVIEW
+                </div>
+                <div className="text-xs font-medium">All Spider Fittings</div>
+                <div className="mt-1.5 text-[10px] font-mono text-[#888880]">
+                  Full System
+                </div>
+              </button>
+
+              {[
+                { id: 'spider-without-fin', name: 'Spider without fin', num: '1', badge: 'Direct Mount' },
+                { id: 'spider-with-fin', name: 'Spider with fin', num: '2', badge: 'Fin Support' },
+                { id: 'fin-plates', name: 'Fin plates', num: '3', badge: 'Base Anchor' },
+                { id: 'splice-plates', name: 'Splice plates', num: '4', badge: 'Fin Splice' },
+                { id: 'routels', name: 'Routels', num: '5', badge: 'Ball-Joint' },
+              ].map((sub) => {
+                const isSubActive = categoryName.toLowerCase() === sub.name.toLowerCase();
+                return (
+                  <button
+                    key={sub.id}
+                    onClick={() => onSelectCategory(sub.name)}
+                    className={`p-3 text-left rounded-xs border transition-all ${
+                      isSubActive
+                        ? 'bg-[#141414] text-[#FAF9F6] border-[#141414] shadow-xs'
+                        : 'bg-white text-[#2E2E2A] border-[#DDDCD4] hover:border-[#141414] hover:bg-[#FAF9F6]'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between text-[10px] font-mono tracking-wider opacity-70 mb-1">
+                      <span>{sub.num}. CATEGORY</span>
+                    </div>
+                    <div className="text-xs font-medium line-clamp-1">{sub.name}</div>
+                    <div className="mt-1.5">
+                      <span
+                        className={`inline-block px-1.5 py-0.5 text-[9px] font-mono uppercase tracking-wider rounded-2xs border ${
+                          isSubActive
+                            ? 'bg-white/20 text-[#FAF9F6] border-white/30'
+                            : 'bg-[#F4F2EC] text-[#5A5953] border-[#E0DED5]'
+                        }`}
+                      >
+                        {sub.badge}
+                      </span>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
 
         {/* 4. FILTER & SORT BAR (MATCHING USER SCREENSHOTS) */}
         <div className="bg-[#F4F2EC] border border-[#E2E0D8] rounded-xs p-4 mb-8">
@@ -493,11 +609,18 @@ export const CategoryCollectionPage: React.FC<CategoryCollectionPageProps> = ({
                   className="group bg-[#F4F2EC] border border-[#E2E0D8] hover:border-[#141414] transition-all duration-300 rounded-xs flex flex-col justify-between overflow-hidden cursor-pointer"
                 >
                   {/* Top Image Container */}
-                  <div className="relative aspect-square w-full bg-white overflow-hidden border-b border-[#E4E2DA]">
+                  <div className="relative aspect-square w-full bg-white overflow-hidden border-b border-[#E4E2DA] flex items-center justify-center">
                     <img
                       src={product.imageUrl}
                       alt={product.name}
-                      className="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500 ease-out"
+                      className={`w-full h-full ${
+                        product.category?.toLowerCase().includes('glass door handle') ||
+                        product.category?.toLowerCase().includes('spider') ||
+                        product.subcategory?.toLowerCase().includes('spider') ||
+                        product.code === 'GSF-B1'
+                          ? 'object-contain p-3.5 sm:p-4'
+                          : 'object-cover'
+                      } group-hover:scale-[1.04] transition-transform duration-500 ease-out`}
                     />
 
                     {/* Badge */}

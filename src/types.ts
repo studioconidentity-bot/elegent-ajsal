@@ -6,6 +6,7 @@ export interface Product {
   code: string; // e.g. "GPF-50", "SH-102", "GCN-90"
   department: 'glassware' | 'hardware';
   category: string; // matches CategoryInfo.name
+  subcategory?: string; // e.g. "Spider without fin", "Spider with fin", etc.
   shortDescription: string;
   description?: string;
   price: number;
@@ -26,6 +27,15 @@ export interface Product {
   inStock: boolean;
 }
 
+export interface SubcategoryInfo {
+  id: string;
+  name: string;
+  shortDescription?: string;
+  itemCount?: number;
+  imageUrl?: string;
+  badge?: string;
+}
+
 export interface CategoryInfo {
   id: string;
   name: string;
@@ -35,6 +45,8 @@ export interface CategoryInfo {
   imageUrl: string;
   specsSummary?: string;
   badge?: string;
+  parentCategory?: string;
+  subcategories?: SubcategoryInfo[];
 }
 
 export interface CartItem {

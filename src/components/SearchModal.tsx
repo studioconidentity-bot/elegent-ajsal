@@ -43,6 +43,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         p.code.toLowerCase().includes(q) ||
         p.name.toLowerCase().includes(q) ||
         p.category.toLowerCase().includes(q) ||
+        p.subcategory?.toLowerCase().includes(q) ||
         p.shortDescription.toLowerCase().includes(q) ||
         p.material.toLowerCase().includes(q)
     );

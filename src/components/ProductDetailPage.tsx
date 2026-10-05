@@ -52,65 +52,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
 
   // Dynamic gallery where Studio view displays the image for the selected color finish
   const activeFinishImgUrl = finishImages[selectedFinish] || product.imageUrl;
-  const isDedicatedPatch =
-    product.code === 'GPF-40' || product.id === 'gpf-40' ||
-    product.code === 'GPF-50' || product.id === 'gpf-50' ||
-    product.code === 'GPF-610' || product.id === 'gpf-610' ||
-    product.code === 'GPF-650' || product.id === 'gpf-650' ||
-    product.code === 'GPF-620' || product.id === 'gpf-620' ||
-    product.code === 'GFS-MFH' || product.id === 'gfs-mfh' ||
-    product.code === 'GGC-01A' || product.id === 'ggc-01a' ||
-    product.code === 'GGC-01' || product.id === 'ggc-01' ||
-    product.code === 'GGC-02' || product.id === 'ggc-02' ||
-    product.code === 'GGC-03' || product.id === 'ggc-03' ||
-    product.code === 'GGC-04' || product.id === 'ggc-04' ||
-    product.code === 'GGC-05' || product.id === 'ggc-05' ||
-    product.code === 'GGC-06' || product.id === 'ggc-06' ||
-    product.code === 'GSH-11 H/P' || product.id === 'gsh-11-hp' ||
-    product.code === 'GSH-11' || product.id === 'gsh-11' ||
-    product.code === 'GSH-22' || product.id === 'gsh-22' ||
-    product.code === 'GSH-33' || product.id === 'gsh-33' ||
-    product.code === 'GSH-55' || product.id === 'gsh-55' ||
-    product.code === 'GSH-44' || product.id === 'gsh-44' ||
-    product.code === 'GSH-66' || product.id === 'gsh-66' ||
-    product.code === 'GGP-04' || product.id === 'ggp-04' ||
-    product.code === 'GGP-M1' || product.id === 'ggp-m1' ||
-    product.code === 'GGP-06' || product.id === 'ggp-06' ||
-    product.code === 'GDH-TB-1' || product.id === 'gdh-tb-1' ||
-    product.code === 'GDK-01' || product.id === 'gdk-01' ||
-    product.code === 'GDK-02' || product.id === 'gdk-02' ||
-    product.code === 'GKH-01' || product.id === 'gkh-01' ||
-    product.code === 'GKH-02' || product.id === 'gkh-02' ||
-    product.code === 'GKH-03' || product.id === 'gkh-03' ||
-    product.code === 'GKH-11' || product.id === 'gkh-11' ||
-    product.code === 'GKH-13' || product.id === 'gkh-13' ||
-    product.code === 'GKH-06' || product.id === 'gkh-06' ||
-    product.code === 'GKH-04' || product.id === 'gkh-04' ||
-    product.code === 'GKH-12' || product.id === 'gkh-12' ||
-    product.code === 'GKH-16' || product.id === 'gkh-16' ||
-    product.code === 'GKH-14' || product.id === 'gkh-14' ||
-    product.code === 'GLS-11 A1 FS' || product.id === 'gls-11-a1-fs' ||
-    product.code === 'GSL-22A' || product.id === 'gsl-22a' ||
-    product.code === 'GSL-44-A1' || product.id === 'gsl-44-a1' ||
-    product.code === 'GSL-44-A2' || product.id === 'gsl-44-a2' ||
-    product.code === 'GLK-1' || product.id === 'glk-1' ||
-    product.code === 'GLK-2' || product.id === 'glk-2' ||
-    product.code === 'GLK-3' || product.id === 'glk-3' ||
-    product.code === 'GLK-4' || product.id === 'glk-4' ||
-    product.code === 'GLK-9' || product.id === 'glk-9';
-
-  const gallery = isDedicatedPatch
-    ? baseGallery
-    : baseGallery.map((item, idx) => {
-        if (idx === 0) {
-          return {
-            ...item,
-            url: activeFinishImgUrl,
-            caption: `${selectedFinish} Finish Specification`,
-          };
-        }
-        return item;
-      });
+  const gallery = baseGallery;
 
   // Synchronize initial state when product changes
   useEffect(() => {
@@ -204,6 +146,17 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
             >
               {product.category}
             </button>
+            {product.subcategory && (
+              <>
+                <ChevronRight className="w-3.5 h-3.5 text-[#A3A199] shrink-0" />
+                <button
+                  onClick={() => onSelectCategory(product.subcategory!)}
+                  className="hover:text-[#141414] transition-colors shrink-0 underline underline-offset-2 font-medium text-[#2E2E2A]"
+                >
+                  {product.subcategory}
+                </button>
+              </>
+            )}
             <ChevronRight className="w-3.5 h-3.5 text-[#A3A199] shrink-0" />
             <span className="text-[#141414] font-semibold shrink-0 font-mono">
               {product.code}
@@ -247,17 +200,26 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               className={`relative ${
                 product.code === 'GLS-11 A1 FS' || product.id === 'gls-11-a1-fs'
                   ? 'aspect-16/9'
+                  : product.category?.toLowerCase().includes('glass door handle')
+                  ? 'aspect-4/5 sm:aspect-4/5 lg:aspect-3/4 min-h-[460px] sm:min-h-[540px]'
                   : 'aspect-square sm:aspect-square lg:aspect-16/11'
-              } w-full bg-white border border-[#E2E0D8] rounded-xs overflow-hidden group shadow-2xs`}
+              } w-full bg-white border border-[#E2E0D8] rounded-xs overflow-hidden group shadow-2xs flex items-center justify-center`}
             >
               <img
                 src={gallery[activeImageIndex]?.url || product.imageUrl}
                 alt={`${product.name} - ${gallery[activeImageIndex]?.caption}`}
-                className="w-full h-full object-cover transition-all duration-500 group-hover:scale-[1.02]"
+                className={`w-full h-full transition-all duration-500 group-hover:scale-[1.02] ${
+                  product.category?.toLowerCase().includes('glass door handle') ||
+                  product.category?.toLowerCase().includes('spider') ||
+                  product.subcategory?.toLowerCase().includes('spider') ||
+                  product.code === 'GSF-B1'
+                    ? 'object-contain p-4 sm:p-7'
+                    : 'object-cover'
+                }`}
               />
 
               {/* Badges Overlay */}
-              <div className="absolute top-4 left-4 flex flex-col gap-2">
+              <div className="absolute top-4 left-4 flex flex-col gap-2 z-10 pointer-events-none">
                 {product.badge && (
                   <span className="px-3 py-1 text-[11px] uppercase font-mono tracking-wider bg-[#141414]/90 text-[#FAF9F6] backdrop-blur-xs rounded-xs">
                     {product.badge}
@@ -269,40 +231,50 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               </div>
 
               {/* View Tag Label */}
-              <div className="absolute bottom-4 left-4">
+              <div className="absolute bottom-4 left-4 z-10 pointer-events-none">
                 <span className="px-2.5 py-1 text-[10px] uppercase font-mono tracking-wider bg-black/60 text-white backdrop-blur-xs rounded-xs">
                   {gallery[activeImageIndex]?.caption || 'Studio Specification'}
                 </span>
               </div>
             </div>
 
-            {/* Gallery Thumbnail Strip (Multiple Views: Studio, In-Situ, Detail) */}
-            <div className={`grid gap-3 ${gallery.length === 3 ? 'grid-cols-3' : gallery.length === 2 ? 'grid-cols-2' : 'grid-cols-4'}`}>
-              {gallery.map((img, idx) => (
-                <button
-                  key={img.id}
-                  onClick={() => setActiveImageIndex(idx)}
-                  className={`relative ${
-                    product.code === 'GLS-11 A1 FS' || product.id === 'gls-11-a1-fs'
-                      ? 'aspect-16/9'
-                      : 'aspect-[16/9] sm:aspect-[16/9] lg:aspect-square'
-                  } bg-white rounded-xs overflow-hidden border transition-all ${
-                    activeImageIndex === idx
-                      ? 'border-[#141414] ring-1 ring-[#141414] shadow-xs'
-                      : 'border-[#E2E0D8] opacity-75 hover:opacity-100 hover:border-[#8E8D86]'
-                  }`}
-                >
-                  <img
-                    src={img.url}
-                    alt={img.caption}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute bottom-1 right-1 px-1 py-0.2 bg-black/70 text-[9px] text-white font-mono uppercase rounded-xs">
-                    {img.tag}
-                  </div>
-                </button>
-              ))}
-            </div>
+            {/* Gallery Thumbnail Strip (Only rendered when product has multiple images) */}
+            {gallery.length > 1 && (
+              <div className={`grid gap-3 ${gallery.length === 3 ? 'grid-cols-3' : gallery.length === 2 ? 'grid-cols-2' : 'grid-cols-4'}`}>
+                {gallery.map((img, idx) => (
+                  <button
+                    key={img.id}
+                    onClick={() => setActiveImageIndex(idx)}
+                    className={`relative ${
+                      product.code === 'GLS-11 A1 FS' || product.id === 'gls-11-a1-fs'
+                        ? 'aspect-16/9'
+                        : product.category?.toLowerCase().includes('glass door handle')
+                        ? 'aspect-3/4 sm:aspect-4/5'
+                        : 'aspect-[16/9] sm:aspect-[16/9] lg:aspect-square'
+                    } bg-white rounded-xs overflow-hidden border transition-all flex items-center justify-center ${
+                      activeImageIndex === idx
+                        ? 'border-[#141414] ring-1 ring-[#141414] shadow-xs'
+                        : 'border-[#E2E0D8] opacity-75 hover:opacity-100 hover:border-[#8E8D86]'
+                    }`}
+                  >
+                    <img
+                      src={img.url}
+                      alt={img.caption}
+                      className={`w-full h-full ${
+                        product.category?.toLowerCase().includes('glass door handle') ||
+                        product.category?.toLowerCase().includes('spider') ||
+                        product.subcategory?.toLowerCase().includes('spider')
+                          ? 'object-contain p-1.5 sm:p-2'
+                          : 'object-cover'
+                      }`}
+                    />
+                    <div className="absolute bottom-1 right-1 px-1 py-0.2 bg-black/70 text-[9px] text-white font-mono uppercase rounded-xs">
+                      {img.tag}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            )}
 
             {/* Architectural Specification & Quality Standard Badge */}
             <div className="pt-3 border-t border-[#EAE7DF] flex items-center justify-between gap-3 text-xs text-[#5A5953]">
@@ -638,6 +610,61 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   GLASS-TO-GLASS LOCK — KEY & KNOB
                 </div>
               )}
+              {(product.code === 'GLK-13' || product.id === 'glk-13') && (
+                <div className="text-xs font-mono uppercase tracking-wider text-[#73726B] mt-1 font-medium">
+                  ONLY KNOB GLASS-TO-GLASS LOCK
+                </div>
+              )}
+              {(product.code === 'GLK-14' || product.id === 'glk-14') && (
+                <div className="text-xs font-mono uppercase tracking-wider text-[#73726B] mt-1 font-medium">
+                  ONLY KNOB WALL-TO-GLASS LOCK
+                </div>
+              )}
+              {(product.code === 'GLK-15' || product.id === 'glk-15') && (
+                <div className="text-xs font-mono uppercase tracking-wider text-[#73726B] mt-1 font-medium">
+                  KNOB ONLY GLASS-TO-GLASS LOCK
+                </div>
+              )}
+              {(product.code === 'GLK-16' || product.id === 'glk-16') && (
+                <div className="text-xs font-mono uppercase tracking-wider text-[#73726B] mt-1 font-medium">
+                  KNOB ONLY WALL-TO-GLASS LOCK
+                </div>
+              )}
+              {(product.code === 'GDH-11' || product.id === 'gdh-11') && (
+                <div className="text-xs font-mono uppercase tracking-wider text-[#73726B] mt-1 font-medium">
+                  TUBULAR GLASS DOOR PULL HANDLE (Ø25 MM)
+                </div>
+              )}
+              {(product.code === 'GDH-55' || product.id === 'gdh-55') && (
+                <div className="text-xs font-mono uppercase tracking-wider text-[#73726B] mt-1 font-medium">
+                  BACK-TO-BACK TUBULAR GLASS DOOR HANDLE (Ø25 / Ø32 MM)
+                </div>
+              )}
+              {(product.code === 'GDH-55 TWO' || product.id === 'gdh-55-two') && (
+                <div className="text-xs font-mono uppercase tracking-wider text-[#73726B] mt-1 font-medium">
+                  BACK-TO-BACK TUBULAR GLASS DOOR HANDLE — GDH-55 TWO
+                </div>
+              )}
+              {(product.code === 'GDH-22' || product.id === 'gdh-22') && (
+                <div className="text-xs font-mono uppercase tracking-wider text-[#73726B] mt-1 font-medium">
+                  GLASS DOOR HANDLE WITH LOCK (38 × 1125 × 1500 MM)
+                </div>
+              )}
+              {(product.code === 'GSF-B1' || product.id === 'gsf-b1') && (
+                <div className="text-xs font-mono uppercase tracking-wider text-[#73726B] mt-1 font-medium">
+                  ONE WAY SPIDER WITHOUT FIN
+                </div>
+              )}
+              {(product.code === 'GSF-B2 (90°)' || product.id === 'gsf-b2-90' || product.code.includes('GSF-B2 (90°)')) && (
+                <div className="text-xs font-mono uppercase tracking-wider text-[#73726B] mt-1 font-medium">
+                  TWO WAY SPIDER WITHOUT FIN — 90° CORNER
+                </div>
+              )}
+              {(product.code === 'GSF-B2 (180°)' || product.id === 'gsf-b2-180' || product.code.includes('GSF-B2 (180°)')) && (
+                <div className="text-xs font-mono uppercase tracking-wider text-[#73726B] mt-1 font-medium">
+                  TWO WAY SPIDER WITHOUT FIN — 180° INLINE
+                </div>
+              )}
 
               {/* Price & Commercial Note */}
               <div className="mt-3 flex items-baseline gap-3">
@@ -774,6 +801,167 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 </div>
               )}
             </div>
+
+            {/* IMPORTANT DIMENSIONAL READING TABLE (for products like GDH-11) */}
+            {(product.code === 'GDH-11' || product.id === 'gdh-11') && (
+              <div className="border border-[#E2E0D8] bg-[#F4F2EB] rounded-xs p-4 space-y-2.5 text-xs">
+                <div className="text-[10px] uppercase font-mono tracking-widest text-[#73726B] pb-1.5 border-b border-[#E4E2DA] flex justify-between items-center">
+                  <span className="font-semibold text-[#141414]">IMPORTANT DIMENSIONAL READING</span>
+                  <span className="font-mono text-[9px] text-[#73726B]">CATALOGUE MATRIX</span>
+                </div>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left font-mono text-xs">
+                    <thead>
+                      <tr className="border-b border-[#E4E2DA] text-[10px] text-[#73726B] uppercase tracking-wider">
+                        <th className="py-1.5 font-semibold">Size</th>
+                        <th className="py-1.5 font-semibold text-center">Diameter C</th>
+                        <th className="py-1.5 font-semibold text-center">Centre-to-Centre B</th>
+                        <th className="py-1.5 font-semibold text-right">Overall Length A</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-[#E6E4DD]">
+                      <tr className="hover:bg-white/50 transition-colors">
+                        <td className="py-1.5 font-medium text-[#141414]">1</td>
+                        <td className="py-1.5 text-center text-[#2E2E2A]">25 mm</td>
+                        <td className="py-1.5 text-center text-[#2E2E2A]">150 mm</td>
+                        <td className="py-1.5 text-right font-medium text-[#141414]">150 mm</td>
+                      </tr>
+                      <tr className="hover:bg-white/50 transition-colors">
+                        <td className="py-1.5 font-medium text-[#141414]">2</td>
+                        <td className="py-1.5 text-center text-[#2E2E2A]">25 mm</td>
+                        <td className="py-1.5 text-center text-[#2E2E2A]">200 mm</td>
+                        <td className="py-1.5 text-right font-medium text-[#141414]">200 mm</td>
+                      </tr>
+                      <tr className="hover:bg-white/50 transition-colors">
+                        <td className="py-1.5 font-medium text-[#141414]">3</td>
+                        <td className="py-1.5 text-center text-[#2E2E2A]">25 mm</td>
+                        <td className="py-1.5 text-center text-[#2E2E2A]">250 mm</td>
+                        <td className="py-1.5 text-right font-medium text-[#141414]">250 mm</td>
+                      </tr>
+                      <tr className="hover:bg-white/50 transition-colors">
+                        <td className="py-1.5 font-medium text-[#141414]">4</td>
+                        <td className="py-1.5 text-center text-[#2E2E2A]">25 mm</td>
+                        <td className="py-1.5 text-center text-[#2E2E2A]">300 mm</td>
+                        <td className="py-1.5 text-right font-medium text-[#141414]">300 mm</td>
+                      </tr>
+                      <tr className="hover:bg-white/50 transition-colors">
+                        <td className="py-1.5 font-medium text-[#141414]">5</td>
+                        <td className="py-1.5 text-center text-[#2E2E2A]">25 mm</td>
+                        <td className="py-1.5 text-center text-[#2E2E2A]">450 mm</td>
+                        <td className="py-1.5 text-right font-medium text-[#141414]">450 mm</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+
+            {/* IMPORTANT DIMENSIONAL READING TABLE (for GDH-55) */}
+            {(product.code === 'GDH-55' || product.id === 'gdh-55') && (
+              <div className="border border-[#E2E0D8] bg-[#F4F2EB] rounded-xs p-4 space-y-2.5 text-xs">
+                <div className="text-[10px] uppercase font-mono tracking-widest text-[#73726B] pb-1.5 border-b border-[#E4E2DA] flex justify-between items-center">
+                  <span className="font-semibold text-[#141414]">IMPORTANT DIMENSIONAL READING</span>
+                  <span className="font-mono text-[9px] text-[#73726B]">CATALOGUE MATRIX (GDH-55)</span>
+                </div>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left font-mono text-xs">
+                    <thead>
+                      <tr className="border-b border-[#E4E2DA] text-[10px] text-[#73726B] uppercase tracking-wider">
+                        <th className="py-1.5 font-semibold">Size</th>
+                        <th className="py-1.5 font-semibold text-center">Diameter C</th>
+                        <th className="py-1.5 font-semibold text-center">Centre-to-Centre B</th>
+                        <th className="py-1.5 font-semibold text-right">Overall Length A</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-[#E6E4DD]">
+                      <tr className="hover:bg-white/50 transition-colors">
+                        <td className="py-1.5 font-medium text-[#141414]">1</td>
+                        <td className="py-1.5 text-center text-[#2E2E2A]">25 mm</td>
+                        <td className="py-1.5 text-center text-[#2E2E2A]">300 mm</td>
+                        <td className="py-1.5 text-right font-medium text-[#141414]">450 mm</td>
+                      </tr>
+                      <tr className="hover:bg-white/50 transition-colors">
+                        <td className="py-1.5 font-medium text-[#141414]">2</td>
+                        <td className="py-1.5 text-center text-[#2E2E2A]">25 mm</td>
+                        <td className="py-1.5 text-center text-[#2E2E2A]">450 mm</td>
+                        <td className="py-1.5 text-right font-medium text-[#141414]">600 mm</td>
+                      </tr>
+                      <tr className="hover:bg-white/50 transition-colors">
+                        <td className="py-1.5 font-medium text-[#141414]">3</td>
+                        <td className="py-1.5 text-center text-[#2E2E2A]">32 mm</td>
+                        <td className="py-1.5 text-center text-[#2E2E2A]">450 mm</td>
+                        <td className="py-1.5 text-right font-medium text-[#141414]">600 mm</td>
+                      </tr>
+                      <tr className="hover:bg-white/50 transition-colors">
+                        <td className="py-1.5 font-medium text-[#141414]">4</td>
+                        <td className="py-1.5 text-center text-[#2E2E2A]">32 mm</td>
+                        <td className="py-1.5 text-center text-[#2E2E2A]">600 mm</td>
+                        <td className="py-1.5 text-right font-medium text-[#141414]">800 mm</td>
+                      </tr>
+                      <tr className="hover:bg-white/50 transition-colors">
+                        <td className="py-1.5 font-medium text-[#141414]">5</td>
+                        <td className="py-1.5 text-center text-[#2E2E2A]">32 mm</td>
+                        <td className="py-1.5 text-center text-[#2E2E2A]">900 mm</td>
+                        <td className="py-1.5 text-right font-medium text-[#141414]">1200 mm</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+
+            {/* DIMENSIONAL CONFIGURATIONS TABLE (for GDH-55 TWO) */}
+            {(product.code === 'GDH-55 TWO' || product.id === 'gdh-55-two') && (
+              <div className="border border-[#E2E0D8] bg-[#F4F2EB] rounded-xs p-4 space-y-2.5 text-xs">
+                <div className="text-[10px] uppercase font-mono tracking-widest text-[#73726B] pb-1.5 border-b border-[#E4E2DA] flex justify-between items-center">
+                  <span className="font-semibold text-[#141414]">DIMENSIONAL CONFIGURATIONS</span>
+                  <span className="font-mono text-[9px] text-[#73726B]">CATALOGUE MATRIX (GDH-55 TWO)</span>
+                </div>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left font-mono text-xs">
+                    <thead>
+                      <tr className="border-b border-[#E4E2DA] text-[10px] text-[#73726B] uppercase tracking-wider">
+                        <th className="py-1.5 font-semibold">Diameter C</th>
+                        <th className="py-1.5 font-semibold text-center">Centre-to-Centre B</th>
+                        <th className="py-1.5 font-semibold text-right">Overall Length A</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-[#E6E4DD]">
+                      <tr className="hover:bg-white/50 transition-colors">
+                        <td className="py-1.5 font-medium text-[#141414]">25 mm</td>
+                        <td className="py-1.5 text-center text-[#2E2E2A]">200 mm</td>
+                        <td className="py-1.5 text-right font-medium text-[#141414]">250 mm</td>
+                      </tr>
+                      <tr className="hover:bg-white/50 transition-colors">
+                        <td className="py-1.5 font-medium text-[#141414]">25 mm</td>
+                        <td className="py-1.5 text-center text-[#2E2E2A]">250 mm</td>
+                        <td className="py-1.5 text-right font-medium text-[#141414]">300 mm</td>
+                      </tr>
+                      <tr className="hover:bg-white/50 transition-colors">
+                        <td className="py-1.5 font-medium text-[#141414]">32 mm</td>
+                        <td className="py-1.5 text-center text-[#2E2E2A]">300 mm</td>
+                        <td className="py-1.5 text-right font-medium text-[#141414]">450 mm</td>
+                      </tr>
+                      <tr className="hover:bg-white/50 transition-colors">
+                        <td className="py-1.5 font-medium text-[#141414]">32 mm</td>
+                        <td className="py-1.5 text-center text-[#2E2E2A]">450 mm</td>
+                        <td className="py-1.5 text-right font-medium text-[#141414]">600 mm</td>
+                      </tr>
+                      <tr className="hover:bg-white/50 transition-colors">
+                        <td className="py-1.5 font-medium text-[#141414]">32 mm</td>
+                        <td className="py-1.5 text-center text-[#2E2E2A]">600 mm</td>
+                        <td className="py-1.5 text-right font-medium text-[#141414]">900 mm</td>
+                      </tr>
+                      <tr className="hover:bg-white/50 transition-colors">
+                        <td className="py-1.5 font-medium text-[#141414]">32 mm</td>
+                        <td className="py-1.5 text-center text-[#2E2E2A]">900 mm</td>
+                        <td className="py-1.5 text-right font-medium text-[#141414]">1200 mm</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
 
             {/* QUANTITY & ACTIONS */}
             <div className="pt-2 space-y-3">

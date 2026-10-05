@@ -1296,6 +1296,515 @@ export const getProductGallery = (product: Product, finish = 'Silver'): GalleryI
     ];
   }
 
+  // Specific handler for GLK-13 Only Knob Glass-to-Glass Lock
+  if (product.code === 'GLK-13' || product.id === 'glk-13') {
+    const isBlack = finish.toLowerCase().includes('black');
+
+    const variantImg = isBlack
+      ? 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791009429/ChatGPT_Image_Oct_3_2026_12_05_03_PM_nwber4.webp'
+      : 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791009426/ChatGPT_Image_Oct_3_2026_12_04_56_PM_secbow.webp';
+
+    const applicationImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791010168/GLK-13_vxa8lm.webp';
+
+    return [
+      {
+        id: `glk-13-${finish.toLowerCase()}-product`,
+        url: variantImg,
+        caption: `${isBlack ? 'Black Matt' : 'Silver'} Finish Specification (GLK-13 Only Knob Glass-to-Glass Lock)`,
+        tag: isBlack ? 'Black Matt' : 'Silver',
+      },
+      {
+        id: 'glk-13-application',
+        url: applicationImg,
+        caption: 'Only Knob Glass-to-Glass Lock Application Reference (GLK-13)',
+        tag: 'Application',
+      },
+    ];
+  }
+
+  // Specific handler for GLK-14 Only Knob Wall-to-Glass Lock
+  if (product.code === 'GLK-14' || product.id === 'glk-14') {
+    const isBlack = finish.toLowerCase().includes('black');
+
+    const silverImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791009642/GLK_14_jlqatn.webp';
+    const blackImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791009643/GLK-14_B_wwb4qt.webp';
+
+    const primaryImg = isBlack ? blackImg : silverImg;
+    const secondaryImg = isBlack ? silverImg : blackImg;
+
+    return [
+      {
+        id: `glk-14-${finish.toLowerCase()}-product`,
+        url: primaryImg,
+        caption: `${isBlack ? 'Black Matt' : 'Silver'} Finish Specification (GLK-14 Only Knob Wall-to-Glass Lock)`,
+        tag: isBlack ? 'Black Matt' : 'Silver',
+      },
+      {
+        id: `glk-14-${isBlack ? 'silver' : 'black'}-variant`,
+        url: secondaryImg,
+        caption: `${isBlack ? 'Silver' : 'Black Matt'} Variant Reference (GLK-14)`,
+        tag: isBlack ? 'Silver' : 'Black Matt',
+      },
+    ];
+  }
+
+  // Specific handler for GLK-15 Knob Only Glass-to-Glass Lock
+  if (product.code === 'GLK-15' || product.id === 'glk-15') {
+    const isBlack = finish.toLowerCase().includes('black');
+
+    const silverImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791009827/GLK-15_dey7ex.webp';
+    const blackImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791009828/GLK-15_B_atk75r.webp';
+
+    const primaryImg = isBlack ? blackImg : silverImg;
+    const secondaryImg = isBlack ? silverImg : blackImg;
+
+    return [
+      {
+        id: `glk-15-${finish.toLowerCase()}-product`,
+        url: primaryImg,
+        caption: `${isBlack ? 'Black Matt' : 'Silver'} Finish Specification (GLK-15 Knob Only Glass-to-Glass Lock)`,
+        tag: isBlack ? 'Black Matt' : 'Silver',
+      },
+      {
+        id: `glk-15-${isBlack ? 'silver' : 'black'}-variant`,
+        url: secondaryImg,
+        caption: `${isBlack ? 'Silver' : 'Black Matt'} Variant Reference (GLK-15)`,
+        tag: isBlack ? 'Silver' : 'Black Matt',
+      },
+    ];
+  }
+
+  // Specific handler for GLK-16 Knob Only Wall-to-Glass Lock
+  if (product.code === 'GLK-16' || product.id === 'glk-16') {
+    const isBlack = finish.toLowerCase().includes('black');
+
+    const variantImg = isBlack
+      ? 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791009993/GLK-16_B_v9h5aa.webp'
+      : 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791009994/GLK-16_h5vsqt.webp';
+
+    const applicationImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791009993/GLK-16_A_fsnqts.webp';
+
+    return [
+      {
+        id: `glk-16-${finish.toLowerCase()}-product`,
+        url: variantImg,
+        caption: `${isBlack ? 'Black Matt' : 'Silver'} Finish Specification (GLK-16 Knob Only Wall-to-Glass Lock)`,
+        tag: isBlack ? 'Black Matt' : 'Silver',
+      },
+      {
+        id: 'glk-16-application',
+        url: applicationImg,
+        caption: 'Wall-to-Glass Lock Application Reference (GLK-16)',
+        tag: 'Application',
+      },
+    ];
+  }
+
+  // Specific handler for GDH-11 Glass Door Pull Handle
+  if (product.code === 'GDH-11' || product.id === 'gdh-11') {
+    const isBlack = finish.toLowerCase().includes('black');
+
+    const silverImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791016423/GDH11_wpt7sg.webp';
+    const blackImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791016423/GDH11_B_olgo7w.webp';
+    const applicationImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791016423/GDH11_A_kgrbbx.webp';
+
+    const primaryImg = isBlack ? blackImg : silverImg;
+    const secondaryImg = isBlack ? silverImg : blackImg;
+
+    return [
+      {
+        id: `gdh-11-${finish.toLowerCase()}-product`,
+        url: primaryImg,
+        caption: `${isBlack ? 'Black Matt' : 'Silver'} Finish Specification (GDH-11 Tubular Pull Handle)`,
+        tag: isBlack ? 'Black Matt' : 'Silver',
+      },
+      {
+        id: 'gdh-11-application',
+        url: applicationImg,
+        caption: 'Glass Door Pull Handle Application Reference (GDH-11)',
+        tag: 'Application',
+      },
+      {
+        id: `gdh-11-${isBlack ? 'silver' : 'black'}-variant`,
+        url: secondaryImg,
+        caption: `${isBlack ? 'Silver' : 'Black Matt'} Variant Reference (GDH-11)`,
+        tag: isBlack ? 'Silver' : 'Black Matt',
+      },
+    ];
+  }
+
+  // Specific handler for GDH-55 Back-to-Back Tubular Glass Door Handle
+  if (product.code === 'GDH-55' || product.id === 'gdh-55') {
+    const isBlack = finish.toLowerCase().includes('black');
+
+    const silverImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791016768/GDH-55_s_baqoe9.webp';
+    const blackImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791016767/GDH-55_b_xaeltj.webp';
+    const applicationImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791016764/GDH-55_ue2m4a.webp';
+
+    const primaryImg = isBlack ? blackImg : silverImg;
+    const secondaryImg = isBlack ? silverImg : blackImg;
+
+    return [
+      {
+        id: `gdh-55-${finish.toLowerCase()}-product`,
+        url: primaryImg,
+        caption: `${isBlack ? 'Black Matt' : 'Silver'} Finish Specification (GDH-55)`,
+        tag: isBlack ? 'Black Matt' : 'Silver',
+      },
+      {
+        id: 'gdh-55-application',
+        url: applicationImg,
+        caption: 'Back-to-Back Glass Door Handle Architectural Installation (GDH-55)',
+        tag: 'Application',
+      },
+      {
+        id: `gdh-55-${isBlack ? 'silver' : 'black'}-variant`,
+        url: secondaryImg,
+        caption: `${isBlack ? 'Silver' : 'Black Matt'} Variant Reference (GDH-55)`,
+        tag: isBlack ? 'Silver' : 'Black Matt',
+      },
+    ];
+  }
+
+  // Specific handler for GDH-55 TWO Back-to-Back Tubular Glass Door Handle
+  if (product.code === 'GDH-55 TWO' || product.id === 'gdh-55-two') {
+    const isBlack = finish.toLowerCase().includes('black');
+
+    const silverImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791017146/GDH-_55_S_asulst.webp';
+    const blackImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791017145/GDH-_55_B_jwm3ta.webp';
+    const applicationImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791017142/GDH-_55_uipl3l.webp';
+
+    const primaryImg = isBlack ? blackImg : silverImg;
+    const secondaryImg = isBlack ? silverImg : blackImg;
+
+    return [
+      {
+        id: `gdh-55-two-${finish.toLowerCase()}-product`,
+        url: primaryImg,
+        caption: `${isBlack ? 'Black Matt' : 'Silver'} Finish Specification (GDH-55 TWO)`,
+        tag: isBlack ? 'Black Matt' : 'Silver',
+      },
+      {
+        id: 'gdh-55-two-application',
+        url: applicationImg,
+        caption: 'Back-to-Back Frameless Glass Door Mounting Application (GDH-55 TWO)',
+        tag: 'Application',
+      },
+      {
+        id: `gdh-55-two-${isBlack ? 'silver' : 'black'}-variant`,
+        url: secondaryImg,
+        caption: `${isBlack ? 'Silver' : 'Black Matt'} Variant Reference (GDH-55 TWO)`,
+        tag: isBlack ? 'Silver' : 'Black Matt',
+      },
+    ];
+  }
+
+  // Specific handler for GDH-22 Glass Door Handle with Lock
+  if (product.code === 'GDH-22' || product.id === 'gdh-22') {
+    const isBlack = finish.toLowerCase().includes('black');
+
+    const silverImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791017395/GDH-22_i0ygcn.webp';
+    const blackImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791017393/GDH-22_B_etmqmw.webp';
+    const applicationImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791017392/GDH-22_A_lakiep.webp';
+
+    const primaryImg = isBlack ? blackImg : silverImg;
+    const secondaryImg = isBlack ? silverImg : blackImg;
+
+    return [
+      {
+        id: `gdh-22-${finish.toLowerCase()}-product`,
+        url: primaryImg,
+        caption: `${isBlack ? 'Black Matt' : 'Silver'} Finish Specification (GDH-22 Handle with Lock)`,
+        tag: isBlack ? 'Black Matt' : 'Silver',
+      },
+      {
+        id: 'gdh-22-application',
+        url: applicationImg,
+        caption: 'Architectural Frameless Glass Door Application with Integrated Lock (GDH-22)',
+        tag: 'Application',
+      },
+      {
+        id: `gdh-22-${isBlack ? 'silver' : 'black'}-variant`,
+        url: secondaryImg,
+        caption: `${isBlack ? 'Silver' : 'Black Matt'} Variant Reference (GDH-22)`,
+        tag: isBlack ? 'Silver' : 'Black Matt',
+      },
+    ];
+  }
+
+  // Specific handler for GSP-01 Iron Assembly
+  if (product.code === 'GSP-01' || product.id === 'gsp-01') {
+    const mainImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791186874/GSP-01_fvenz9.webp';
+    return [
+      {
+        id: 'gsp-01-studio',
+        url: mainImg,
+        caption: 'GSP-01 Iron Assembly — Dark Grey / Silver Metallic Specification',
+        tag: 'Silver',
+      },
+    ];
+  }
+
+  // Specific handler for GSP-AFB 36CS Articulated Routel — Counter Sunk Hole
+  if (product.code === 'GSP-AFB 36CS' || product.id === 'gsp-afb-36cs') {
+    const mainImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791186626/AFB_36CS_sxt7qd.webp';
+    return [
+      {
+        id: 'gsp-afb-36cs-studio',
+        url: mainImg,
+        caption: 'GSP-AFB 36CS Articulated Routel (Counter Sunk Hole) — Satin Silver Specification',
+        tag: 'Silver',
+      },
+    ];
+  }
+
+  // Specific handler for GSP-FB FL Fixed Routel — Flat Head
+  if (product.code === 'GSP-FB FL' || product.id === 'gsp-fb-fl') {
+    const mainImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791186555/GSP-FB_nvtfit.webp';
+    return [
+      {
+        id: 'gsp-fb-fl-studio',
+        url: mainImg,
+        caption: 'GSP-FB FL Fixed Routel (Flat Head) — Satin Silver Specification',
+        tag: 'Silver',
+      },
+    ];
+  }
+
+  // Specific handler for GSP-AFB 36FL Articulated Routel — Flat Head
+  if (product.code === 'GSP-AFB 36FL' || product.id === 'gsp-afb-36fl') {
+    const mainImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791186406/AFB_36FL_hrruj2.webp';
+    return [
+      {
+        id: 'gsp-afb-36fl-studio',
+        url: mainImg,
+        caption: 'GSP-AFB 36FL Articulated Routel (Flat Head) — Satin Silver Specification',
+        tag: 'Silver',
+      },
+    ];
+  }
+
+  // Specific handler for GSP-350 Splice Plate 350mm
+  if (product.code === 'GSP-350' || product.id === 'gsp-350') {
+    const mainImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791185947/GSP-350_jxvihw.webp';
+    return [
+      {
+        id: 'gsp-350-studio',
+        url: mainImg,
+        caption: 'GSP-350 Splice Plate 350mm — Satin Silver Specification',
+        tag: 'Silver',
+      },
+    ];
+  }
+
+  // Specific handler for GSP-300 Splice Plate 300mm
+  if (product.code === 'GSP-300' || product.id === 'gsp-300') {
+    const mainImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791185713/GSP-300_mpo5gh.webp';
+    return [
+      {
+        id: 'gsp-300-studio',
+        url: mainImg,
+        caption: 'GSP-300 Splice Plate 300mm — Satin Silver Specification',
+        tag: 'Silver',
+      },
+    ];
+  }
+
+  // Specific handler for GSP-250 Splice Plate 250mm
+  if (product.code === 'GSP-250' || product.id === 'gsp-250') {
+    const mainImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791185509/GSP-250_ggwrcg.webp';
+    return [
+      {
+        id: 'gsp-250-studio',
+        url: mainImg,
+        caption: 'GSP-250 Splice Plate 250mm — Satin Silver Specification',
+        tag: 'Silver',
+      },
+    ];
+  }
+
+  // Specific handler for GSP-200 Splice Plate 200mm
+  if (product.code === 'GSP-200' || product.id === 'gsp-200') {
+    const mainImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791186153/GSP-200_vs5hkc.webp';
+    return [
+      {
+        id: 'gsp-200-studio',
+        url: mainImg,
+        caption: 'GSP-200 Splice Plate 200mm — Satin Silver Specification',
+        tag: 'Silver',
+      },
+    ];
+  }
+
+  // Specific handler for GFP-400 Fin Plate 400mm
+  if (product.code === 'GFP-400' || product.id === 'gfp-400') {
+    const mainImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791184373/GFP-400_ixlssa.webp';
+    return [
+      {
+        id: 'gfp-400-studio',
+        url: mainImg,
+        caption: 'GFP-400 Fin Plate 400mm — Satin Silver Specification',
+        tag: 'Silver',
+      },
+    ];
+  }
+
+  // Specific handler for GFP-350 Fin Plate 350mm
+  if (product.code === 'GFP-350' || product.id === 'gfp-350') {
+    const mainImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791184173/GFP-350_soi63u.webp';
+    return [
+      {
+        id: 'gfp-350-studio',
+        url: mainImg,
+        caption: 'GFP-350 Fin Plate 350mm — Satin Silver Specification',
+        tag: 'Silver',
+      },
+    ];
+  }
+
+  // Specific handler for GFP-300 Fin Plate 300mm
+  if (product.code === 'GFP-300' || product.id === 'gfp-300') {
+    const mainImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791184080/GFP-300_xbwbvo.webp';
+    return [
+      {
+        id: 'gfp-300-studio',
+        url: mainImg,
+        caption: 'GFP-300 Fin Plate 300mm — Satin Silver Specification',
+        tag: 'Silver',
+      },
+    ];
+  }
+
+  // Specific handler for GFP-200 Fin Plate 200mm
+  if (product.code === 'GFP-200' || product.id === 'gfp-200') {
+    const mainImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791183993/GFP-200_gyptik.webp';
+    return [
+      {
+        id: 'gfp-200-studio',
+        url: mainImg,
+        caption: 'GFP-200 Fin Plate 200mm — Satin Silver Specification',
+        tag: 'Silver',
+      },
+    ];
+  }
+
+  // Specific handler for GSF-B1 One Way Spider Without Fin
+  if (product.code === 'GSF-B1' || product.id === 'gsf-b1') {
+    const mainImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791032689/ChatGPT_Image_Oct_3_2026_06_33_30_PM_rzukfm.webp';
+    return [
+      {
+        id: 'gsf-b1-studio',
+        url: mainImg,
+        caption: 'GSF-B1 One-Way Spider Fitting Without Fin — Silver Specification',
+        tag: 'Silver',
+      },
+    ];
+  }
+
+  // Specific handler for GSF-A44 Two Way Spider — Wall Mounted
+  if (product.code === 'GSF-A44' || product.id === 'gsf-a44') {
+    const mainImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791033645/ChatGPT_Image_Oct_3_2026_06_50_23_PM_liridh.webp';
+    return [
+      {
+        id: 'gsf-a44-studio',
+        url: mainImg,
+        caption: 'GSF-A44 Two-Way Spider (Wall Mounted) — Silver Specification',
+        tag: 'Silver',
+      },
+    ];
+  }
+
+  // Specific handler for GSF-A4 Four Way Spider With Fin
+  if (product.code === 'GSF-A4' || product.id === 'gsf-a4') {
+    const mainImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791033372/GSF-A4_uunwmd.webp';
+    return [
+      {
+        id: 'gsf-a4-studio',
+        url: mainImg,
+        caption: 'GSF-A4 Four-Way Spider with Fin — Silver Specification',
+        tag: 'Silver',
+      },
+    ];
+  }
+
+  // Specific handler for GSF-A22 One Way Spider — Wall Mounted
+  if (product.code === 'GSF-A22' || product.id === 'gsf-a22') {
+    const mainImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791033771/ChatGPT_Image_Oct_3_2026_06_52_21_PM_sy5dtn.webp';
+    return [
+      {
+        id: 'gsf-a22-studio',
+        url: mainImg,
+        caption: 'GSF-A22 One-Way Spider (Wall Mounted) — Silver Specification',
+        tag: 'Silver',
+      },
+    ];
+  }
+
+  // Specific handler for GSF-A2 Two Way Spider With Fin
+  if (product.code === 'GSF-A2' || product.id === 'gsf-a2') {
+    const mainImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791033948/ChatGPT_Image_Oct_3_2026_06_55_28_PM_zzg2u5.webp';
+    return [
+      {
+        id: 'gsf-a2-studio',
+        url: mainImg,
+        caption: 'GSF-A2 Two-Way Spider with Central Fin — Silver Specification',
+        tag: 'Silver',
+      },
+    ];
+  }
+
+  // Specific handler for GSF-B4 Four Way Spider Without Fin
+  if (product.code === 'GSF-B4' || product.id === 'gsf-b4' || product.code.includes('GSF-B4')) {
+    const mainImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791033219/GSF-B4_pcz7ok.webp';
+    return [
+      {
+        id: 'gsf-b4-studio',
+        url: mainImg,
+        caption: 'GSF-B4 Four-Way Spider Fitting Without Fin — Silver Specification',
+        tag: 'Silver',
+      },
+    ];
+  }
+
+  // Specific handler for GSF-B3 (180°) Three Way Spider Without Fin — 180°
+  if (product.code === 'GSF-B3 (180°)' || product.id === 'gsf-b3-180' || product.code.includes('GSF-B3')) {
+    const mainImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791033129/GSF-B3_girie6.webp';
+    return [
+      {
+        id: 'gsf-b3-180-studio',
+        url: mainImg,
+        caption: 'GSF-B3 (180°) Three-Way 180° Spider Fitting Without Fin — Silver Specification',
+        tag: 'Silver',
+      },
+    ];
+  }
+
+  // Specific handler for GSF-B2 (180°) Two Way Spider Without Fin — 180°
+  if (product.code === 'GSF-B2 (180°)' || product.id === 'gsf-b2-180' || (product.code.includes('GSF-B2') && product.code.includes('180'))) {
+    const mainImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791033032/GSF-B2_180_nbcrrk.webp';
+    return [
+      {
+        id: 'gsf-b2-180-studio',
+        url: mainImg,
+        caption: 'GSF-B2 (180°) Two-Way 180° Inline Spider Fitting Without Fin — Silver Specification',
+        tag: 'Silver',
+      },
+    ];
+  }
+
+  // Specific handler for GSF-B2 (90°) Two Way Spider Without Fin — 90°
+  if (product.code === 'GSF-B2 (90°)' || product.id === 'gsf-b2-90' || (product.code.includes('GSF-B2') && !product.code.includes('180'))) {
+    const mainImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791032947/GSF-B2_xhghnr.webp';
+    return [
+      {
+        id: 'gsf-b2-studio',
+        url: mainImg,
+        caption: 'GSF-B2 (90°) Two-Way 90° Spider Fitting Without Fin — Silver Specification',
+        tag: 'Silver',
+      },
+    ];
+  }
+
   if (product.galleryImages && product.galleryImages.length > 0) {
     return product.galleryImages.map((url, index) => ({
       id: `custom-${index}`,
@@ -1305,50 +1814,29 @@ export const getProductGallery = (product: Product, finish = 'Silver'): GalleryI
     }));
   }
 
-  // Application/in-situ context images tailored by category and application
-  const categoryContextImages: Record<string, string> = {
-    'Patch Fittings': 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80',
-    'Glass Connectors': 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80',
-    'Shower Hinges': 'https://images.unsplash.com/photo-1584622781564-1d987f7333c1?auto=format&fit=crop&w=1200&q=80',
-    'PVC Profiles': 'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=1200&q=80',
-    'Shower Door Handles': 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=1200&q=80',
-    'Door Knobs': 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80',
-    'Shower Night Head': 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80',
-    'ACC': 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80',
-    'Shower Sliding System': 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=1200&q=80',
-    'Sliding Door System': 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
-    'Sliding Roller Set & Accessories': 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80',
-    'Locks Without Cutout': 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80',
-    'Glass Door Handles': 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=1200&q=80',
-    'Spider Fitting': 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80',
-  };
-
-  const inSituImage =
-    categoryContextImages[product.category] ||
-    'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80';
-
-  const detailImage =
-    product.secondaryImageUrl ||
-    'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80';
+  if (product.secondaryImageUrl) {
+    return [
+      {
+        id: `${product.id}-main`,
+        url: product.imageUrl,
+        caption: `${product.code} — ${finish} Specification`,
+        tag: finish,
+      },
+      {
+        id: `${product.id}-secondary`,
+        url: product.secondaryImageUrl,
+        caption: `${product.code} — Application / Secondary View`,
+        tag: 'Application',
+      },
+    ];
+  }
 
   return [
     {
       id: `${product.id}-main`,
       url: product.imageUrl,
-      caption: 'Studio Specification View',
-      tag: 'Studio',
-    },
-    {
-      id: `${product.id}-insitu`,
-      url: inSituImage,
-      caption: 'Architectural In-Situ Installation',
-      tag: 'In-Situ',
-    },
-    {
-      id: `${product.id}-detail`,
-      url: detailImage,
-      caption: 'Precision CNC Machining & Finish',
-      tag: 'Detail',
+      caption: `${product.code} — ${finish} Specification`,
+      tag: finish,
     },
   ];
 };
@@ -1886,47 +2374,246 @@ export const getFinishImages = (product: Product): Record<string, string> => {
     };
   }
 
-  // If product belongs to glassware
-  if (product.department === 'glassware') {
+  // GLK-13 finishes with exact Cloudinary URLs
+  if (product.code === 'GLK-13' || product.id === 'glk-13') {
     return {
-      'Silver': 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80',
-      'Black': 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
-      'Rose gold': 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80',
-      'Golden': 'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=1200&q=80',
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791009426/ChatGPT_Image_Oct_3_2026_12_04_56_PM_secbow.webp',
+      'Black': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791009429/ChatGPT_Image_Oct_3_2026_12_05_03_PM_nwber4.webp',
+      'Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791009426/ChatGPT_Image_Oct_3_2026_12_04_56_PM_secbow.webp',
+      'Rose Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791009426/ChatGPT_Image_Oct_3_2026_12_04_56_PM_secbow.webp',
     };
   }
 
-  const cat = product.category.toLowerCase();
-  if (cat.includes('hinge')) {
+  // GLK-14 finishes with exact Cloudinary URLs
+  if (product.code === 'GLK-14' || product.id === 'glk-14') {
     return {
-      'Silver': 'https://images.unsplash.com/photo-1584622781564-1d987f7333c1?auto=format&fit=crop&w=1200&q=80',
-      'Black': 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=80',
-      'Rose gold': 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80',
-      'Golden': 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=1200&q=80',
-    };
-  }
-  if (cat.includes('handle') || cat.includes('knob')) {
-    return {
-      'Silver': 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=1200&q=80',
-      'Black': 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80',
-      'Rose gold': 'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=1200&q=80',
-      'Golden': 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=80',
-    };
-  }
-  if (cat.includes('sliding') || cat.includes('roller')) {
-    return {
-      'Silver': 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80',
-      'Black': 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
-      'Rose gold': 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80',
-      'Golden': 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80',
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791009642/GLK_14_jlqatn.webp',
+      'Black': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791009643/GLK-14_B_wwb4qt.webp',
+      'Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791009642/GLK_14_jlqatn.webp',
+      'Rose Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791009642/GLK_14_jlqatn.webp',
     };
   }
 
-  // Default Patch fittings, Connectors, Spider, Locks, etc.
+  // GLK-15 finishes with exact Cloudinary URLs
+  if (product.code === 'GLK-15' || product.id === 'glk-15') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791009827/GLK-15_dey7ex.webp',
+      'Black': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791009828/GLK-15_B_atk75r.webp',
+      'Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791009827/GLK-15_dey7ex.webp',
+      'Rose Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791009827/GLK-15_dey7ex.webp',
+    };
+  }
+
+  // GLK-16 finishes with exact Cloudinary URLs
+  if (product.code === 'GLK-16' || product.id === 'glk-16') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791009994/GLK-16_h5vsqt.webp',
+      'Black': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791009993/GLK-16_B_v9h5aa.webp',
+      'Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791009994/GLK-16_h5vsqt.webp',
+      'Rose Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791009994/GLK-16_h5vsqt.webp',
+    };
+  }
+
+  // GDH-11 finishes with exact Cloudinary URLs
+  if (product.code === 'GDH-11' || product.id === 'gdh-11') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791016423/GDH11_wpt7sg.webp',
+      'Black': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791016423/GDH11_B_olgo7w.webp',
+      'Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791016423/GDH11_wpt7sg.webp',
+      'Golden': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791016423/GDH11_wpt7sg.webp',
+      'Rose gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791016423/GDH11_wpt7sg.webp',
+      'Rose Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791016423/GDH11_wpt7sg.webp',
+    };
+  }
+
+  // GDH-55 finishes with exact Cloudinary URLs
+  if (product.code === 'GDH-55' || product.id === 'gdh-55') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791016768/GDH-55_s_baqoe9.webp',
+      'Black': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791016767/GDH-55_b_xaeltj.webp',
+      'Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791016768/GDH-55_s_baqoe9.webp',
+      'Golden': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791016768/GDH-55_s_baqoe9.webp',
+      'Rose gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791016768/GDH-55_s_baqoe9.webp',
+      'Rose Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791016768/GDH-55_s_baqoe9.webp',
+    };
+  }
+
+  // GDH-55 TWO finishes with exact Cloudinary URLs
+  if (product.code === 'GDH-55 TWO' || product.id === 'gdh-55-two') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791017146/GDH-_55_S_asulst.webp',
+      'Black': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791017145/GDH-_55_B_jwm3ta.webp',
+      'Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791017146/GDH-_55_S_asulst.webp',
+      'Golden': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791017146/GDH-_55_S_asulst.webp',
+      'Rose gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791017146/GDH-_55_S_asulst.webp',
+      'Rose Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791017146/GDH-_55_S_asulst.webp',
+    };
+  }
+
+  // GDH-22 finishes with exact Cloudinary URLs
+  if (product.code === 'GDH-22' || product.id === 'gdh-22') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791017395/GDH-22_i0ygcn.webp',
+      'Black': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791017393/GDH-22_B_etmqmw.webp',
+      'Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791017395/GDH-22_i0ygcn.webp',
+      'Golden': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791017395/GDH-22_i0ygcn.webp',
+      'Rose gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791017395/GDH-22_i0ygcn.webp',
+      'Rose Gold': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791017395/GDH-22_i0ygcn.webp',
+    };
+  }
+
+  // GSF-B1 finishes with exact Cloudinary URL
+  if (product.code === 'GSF-B1' || product.id === 'gsf-b1') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791032689/ChatGPT_Image_Oct_3_2026_06_33_30_PM_rzukfm.webp',
+    };
+  }
+
+  // GSF-B2 (90°) finishes with exact Cloudinary URL
+  if (product.code === 'GSF-B2 (90°)' || product.id === 'gsf-b2-90' || (product.code.includes('GSF-B2') && !product.code.includes('180'))) {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791032947/GSF-B2_xhghnr.webp',
+    };
+  }
+
+  // GSF-B2 (180°) finishes with exact Cloudinary URL
+  if (product.code === 'GSF-B2 (180°)' || product.id === 'gsf-b2-180' || (product.code.includes('GSF-B2') && product.code.includes('180'))) {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791033032/GSF-B2_180_nbcrrk.webp',
+    };
+  }
+
+  // GSF-B3 (180°) finishes with exact Cloudinary URL
+  if (product.code === 'GSF-B3 (180°)' || product.id === 'gsf-b3-180' || product.code.includes('GSF-B3')) {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791033129/GSF-B3_girie6.webp',
+    };
+  }
+
+  // GSF-B4 finishes with exact Cloudinary URL
+  if (product.code === 'GSF-B4' || product.id === 'gsf-b4' || product.code.includes('GSF-B4')) {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791033219/GSF-B4_pcz7ok.webp',
+    };
+  }
+
+  // GSF-A44 finishes with exact Cloudinary URL
+  if (product.code === 'GSF-A44' || product.id === 'gsf-a44') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791033645/ChatGPT_Image_Oct_3_2026_06_50_23_PM_liridh.webp',
+    };
+  }
+
+  // GSF-A4 finishes with exact Cloudinary URL
+  if (product.code === 'GSF-A4' || product.id === 'gsf-a4') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791033372/GSF-A4_uunwmd.webp',
+    };
+  }
+
+  // GSF-A22 finishes with exact Cloudinary URL
+  if (product.code === 'GSF-A22' || product.id === 'gsf-a22') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791033771/ChatGPT_Image_Oct_3_2026_06_52_21_PM_sy5dtn.webp',
+    };
+  }
+
+  // GSP-01 finishes with exact Cloudinary URL
+  if (product.code === 'GSP-01' || product.id === 'gsp-01') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791186874/GSP-01_fvenz9.webp',
+    };
+  }
+
+  // GSP-AFB 36CS finishes with exact Cloudinary URL
+  if (product.code === 'GSP-AFB 36CS' || product.id === 'gsp-afb-36cs') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791186626/AFB_36CS_sxt7qd.webp',
+    };
+  }
+
+  // GSP-FB FL finishes with exact Cloudinary URL
+  if (product.code === 'GSP-FB FL' || product.id === 'gsp-fb-fl') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791186555/GSP-FB_nvtfit.webp',
+    };
+  }
+
+  // GSP-AFB 36FL finishes with exact Cloudinary URL
+  if (product.code === 'GSP-AFB 36FL' || product.id === 'gsp-afb-36fl') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791186406/AFB_36FL_hrruj2.webp',
+    };
+  }
+
+  // GSP-350 finishes with exact Cloudinary URL
+  if (product.code === 'GSP-350' || product.id === 'gsp-350') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791185947/GSP-350_jxvihw.webp',
+    };
+  }
+
+  // GSP-300 finishes with exact Cloudinary URL
+  if (product.code === 'GSP-300' || product.id === 'gsp-300') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791185713/GSP-300_mpo5gh.webp',
+    };
+  }
+
+  // GSP-250 finishes with exact Cloudinary URL
+  if (product.code === 'GSP-250' || product.id === 'gsp-250') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791185509/GSP-250_ggwrcg.webp',
+    };
+  }
+
+  // GSP-200 finishes with exact Cloudinary URL
+  if (product.code === 'GSP-200' || product.id === 'gsp-200') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791186153/GSP-200_vs5hkc.webp',
+    };
+  }
+
+  // GFP-400 finishes with exact Cloudinary URL
+  if (product.code === 'GFP-400' || product.id === 'gfp-400') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791184373/GFP-400_ixlssa.webp',
+    };
+  }
+
+  // GFP-350 finishes with exact Cloudinary URL
+  if (product.code === 'GFP-350' || product.id === 'gfp-350') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791184173/GFP-350_soi63u.webp',
+    };
+  }
+
+  // GFP-300 finishes with exact Cloudinary URL
+  if (product.code === 'GFP-300' || product.id === 'gfp-300') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791184080/GFP-300_xbwbvo.webp',
+    };
+  }
+
+  // GFP-200 finishes with exact Cloudinary URL
+  if (product.code === 'GFP-200' || product.id === 'gfp-200') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791183993/GFP-200_gyptik.webp',
+    };
+  }
+
+  // GSF-A2 finishes with exact Cloudinary URL
+  if (product.code === 'GSF-A2' || product.id === 'gsf-a2') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791033948/ChatGPT_Image_Oct_3_2026_06_55_28_PM_zzg2u5.webp',
+    };
+  }
+
+  // Default fallback: always use the product's own imageUrl so unrelated images never appear
   return {
-    'Silver': 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80',
-    'Black': 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80',
-    'Rose gold': 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80',
-    'Golden': 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80',
+    'Silver': product.imageUrl,
+    'Black': product.secondaryImageUrl || product.imageUrl,
+    'Rose gold': product.imageUrl,
+    'Golden': product.imageUrl,
   };
 };

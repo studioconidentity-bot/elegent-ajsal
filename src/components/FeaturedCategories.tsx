@@ -24,7 +24,7 @@ const FEATURED_CATEGORIES: CategoryCardItem[] = [
     department: 'Hardware',
     badge: 'Hydraulic Soft-Close',
     shortDescription: 'Concealed floor spring pivot fittings with dual-speed valve deceleration for frameless tempered glass doors.',
-    imageUrl: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://res.cloudinary.com/cbi5mcab/image/upload/v1789997542/GPF-40_S_f8mxdl.webp',
     technicalHighlights: '10mm–15mm Glass • 120kg Capacity',
   },
   {
@@ -33,7 +33,7 @@ const FEATURED_CATEGORIES: CategoryCardItem[] = [
     department: 'Hardware',
     badge: 'Solid Block 316',
     shortDescription: 'Structural 90° and 180° monolithic edge clamps and balustrade pins engineered for maximum shear resistance.',
-    imageUrl: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790010808/GGC-01A_S_qll6ek.webp',
     technicalHighlights: 'Heavy-Duty Shear • EPDM Isolators',
   },
   {
@@ -42,7 +42,7 @@ const FEATURED_CATEGORIES: CategoryCardItem[] = [
     department: 'Hardware',
     badge: '200k Cycles Tested',
     shortDescription: 'Precision self-centering glass-to-wall and glass-to-glass dual action spring hinges in brushed satin and mirror finishes.',
-    imageUrl: 'https://images.unsplash.com/photo-1584622781564-1d987f7333c1?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790157960/GSH_11_irrmax.webp',
     technicalHighlights: 'Zero-Point Cam • 8mm–12mm Tempered',
   },
   {
@@ -51,7 +51,7 @@ const FEATURED_CATEGORIES: CategoryCardItem[] = [
     department: 'Hardware',
     badge: 'Ergonomic Grip',
     shortDescription: 'Architectural tubular ladder handles, offset pull bars, and recessed back-to-back stainless grips with secure nylon bushings.',
-    imageUrl: 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791016423/GDH11_wpt7sg.webp',
     technicalHighlights: '450mm–1800mm Lengths • Anti-Rattle',
   },
   {
@@ -60,17 +60,17 @@ const FEATURED_CATEGORIES: CategoryCardItem[] = [
     department: 'Hardware',
     badge: 'Acoustic Damped',
     shortDescription: 'Top-hung suspended roller assemblies with integrated soft-stop hydraulic dampers and concealed flush floor guides.',
-    imageUrl: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://res.cloudinary.com/cbi5mcab/image/upload/v1790690879/GLS-11_A1_S_k3zmh4.webp',
     technicalHighlights: 'Whisper-Quiet Rollers • 150kg Leaf',
   },
   {
-    id: 'spider-fittings',
-    name: 'Spider Fittings',
+    id: 'spider-fitting',
+    name: 'Spider Fitting',
     department: 'Hardware',
-    badge: 'Facade Engineering',
-    shortDescription: 'Heavy-duty articulated 1-way, 2-way, and 4-way cast structural stainless brackets for exterior curtain walls and skylights.',
-    imageUrl: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80',
-    technicalHighlights: 'Ball-Joint Rotules • Wind-Load Tested',
+    badge: '5 Categories',
+    shortDescription: 'Precision 316 cast spider brackets with & without fins, structural fin plates, splice plates, and articulated ball routels.',
+    imageUrl: 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791033372/GSF-A4_uunwmd.webp',
+    technicalHighlights: '5 Categories • Cast 316',
   },
 ];
 

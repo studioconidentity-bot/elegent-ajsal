@@ -93,10 +93,25 @@ export const CatalogueSection: React.FC<CatalogueSectionProps> = ({
 
     // 2. Category Filter
     if (selectedCategoryName) {
-      result = result.filter((p) => p.category.toLowerCase() === selectedCategoryName.toLowerCase());
+      const catLower = selectedCategoryName.toLowerCase();
+      result = result.filter((p) => {
+        if (catLower === 'spider fitting') {
+          return (
+            p.category.toLowerCase() === 'spider fitting' ||
+            p.subcategory?.toLowerCase().includes('spider') ||
+            p.subcategory?.toLowerCase().includes('fin') ||
+            p.subcategory?.toLowerCase().includes('splice') ||
+            p.subcategory?.toLowerCase().includes('routel')
+          );
+        }
+        return (
+          p.category.toLowerCase() === catLower ||
+          p.subcategory?.toLowerCase() === catLower
+        );
+      });
     }
 
-    // 3. Search Query (matches name, code, category, or short description)
+    // 3. Search Query (matches name, code, category, subcategory, or short description)
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase().trim();
       result = result.filter(
@@ -104,6 +119,7 @@ export const CatalogueSection: React.FC<CatalogueSectionProps> = ({
           p.name.toLowerCase().includes(q) ||
           p.code.toLowerCase().includes(q) ||
           p.category.toLowerCase().includes(q) ||
+          p.subcategory?.toLowerCase().includes(q) ||
           p.shortDescription.toLowerCase().includes(q)
       );
     }
@@ -340,6 +356,66 @@ export const CatalogueSection: React.FC<CatalogueSectionProps> = ({
                 );
               })}
             </div>
+
+            {/* DEDICATED SPIDER FITTING 5-CATEGORY FILTER BAR */}
+            {(selectedCategoryName?.toLowerCase() === 'spider fitting' ||
+              selectedCategoryName?.toLowerCase() === 'spider without fin' ||
+              selectedCategoryName?.toLowerCase() === 'spider with fin' ||
+              selectedCategoryName?.toLowerCase() === 'fin plates' ||
+              selectedCategoryName?.toLowerCase() === 'splice plates' ||
+              selectedCategoryName?.toLowerCase() === 'routels') && (
+              <div className="mt-4 p-4 bg-[#EDEAE2] border border-[#DDDCD4] rounded-xs animate-fade-in">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#141414]" />
+                    <span className="text-xs font-mono uppercase tracking-wider text-[#141414] font-medium">
+                      Within Spider Fitting — 5 Specialized Categories:
+                    </span>
+                  </div>
+                  <span className="text-[11px] font-mono text-[#73726B]">
+                    Select to filter products
+                  </span>
+                </div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <button
+                    onClick={() => onSelectCategory('Spider Fitting')}
+                    className={`px-3 py-1.5 text-xs font-medium uppercase tracking-wider rounded-2xs border transition-all ${
+                      selectedCategoryName?.toLowerCase() === 'spider fitting'
+                        ? 'bg-[#141414] text-[#FAF9F6] border-[#141414] shadow-xs'
+                        : 'bg-white text-[#444440] border-[#DDDCD4] hover:border-[#141414] hover:bg-[#FAF9F6]'
+                    }`}
+                  >
+                    All Spider Fittings
+                  </button>
+                  {[
+                    { id: 'spider-without-fin', name: 'Spider without fin', num: '1' },
+                    { id: 'spider-with-fin', name: 'Spider with fin', num: '2' },
+                    { id: 'fin-plates', name: 'Fin plates', num: '3' },
+                    { id: 'splice-plates', name: 'Splice plates', num: '4' },
+                    { id: 'routels', name: 'Routels', num: '5' },
+                  ].map((sub) => {
+                    const isSubActive = selectedCategoryName?.toLowerCase() === sub.name.toLowerCase();
+                    return (
+                      <button
+                        key={sub.id}
+                        id={`subcat-btn-${sub.id}`}
+                        onClick={() => onSelectCategory(sub.name)}
+                        className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium uppercase tracking-wider rounded-2xs border transition-all ${
+                          isSubActive
+                            ? 'bg-[#141414] text-[#FAF9F6] border-[#141414] shadow-xs'
+                            : 'bg-white text-[#444440] border-[#DDDCD4] hover:border-[#141414] hover:bg-[#FAF9F6]'
+                        }`}
+                      >
+                        <span className={`text-[10px] font-mono ${isSubActive ? 'text-[#AAA9A2]' : 'text-[#888880]'}`}>
+                          {sub.num}.
+                        </span>
+                        <span>{sub.name}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
@@ -514,11 +590,18 @@ export const CatalogueSection: React.FC<CatalogueSectionProps> = ({
                   className="group bg-[#F4F2EC] border border-[#E2E0D8] hover:border-[#141414] transition-all duration-300 rounded-xs flex flex-col justify-between overflow-hidden cursor-pointer"
                 >
                   {/* Top Image Container */}
-                  <div className="relative aspect-square w-full bg-white overflow-hidden border-b border-[#E4E2DA]">
+                  <div className="relative aspect-square w-full bg-white overflow-hidden border-b border-[#E4E2DA] flex items-center justify-center">
                     <img
                       src={product.imageUrl}
                       alt={product.name}
-                      className="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500 ease-out"
+                      className={`w-full h-full ${
+                        product.category?.toLowerCase().includes('glass door handle') ||
+                        product.category?.toLowerCase().includes('spider') ||
+                        product.subcategory?.toLowerCase().includes('spider') ||
+                        product.code === 'GSF-B1'
+                          ? 'object-contain p-3.5 sm:p-4'
+                          : 'object-cover'
+                      } group-hover:scale-[1.04] transition-transform duration-500 ease-out`}
                     />
 
                     {/* Badge */}

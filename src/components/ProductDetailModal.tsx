@@ -100,11 +100,15 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
             {/* Left Column: Large Product Imagery */}
             <div className="space-y-3">
-              <div className="relative aspect-square w-full bg-white border border-[#E2E0D8] rounded-xs overflow-hidden group">
+              <div className="relative aspect-square w-full bg-white border border-[#E2E0D8] rounded-xs overflow-hidden group flex items-center justify-center">
                 <img
                   src={currentImg}
                   alt={product.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className={`w-full h-full ${
+                    product.category?.toLowerCase().includes('glass door handle')
+                      ? 'object-contain p-4'
+                      : 'object-cover'
+                  } group-hover:scale-105 transition-transform duration-500`}
                 />
                 {product.badge && (
                   <div className="absolute top-3 left-3">
