@@ -1532,6 +1532,180 @@ export const getProductGallery = (product: Product, finish = 'Silver'): GalleryI
     ];
   }
 
+  // Specific handler for GFS-8400 Combo Set
+  if (product.code === 'GFS-8400' || product.id === 'gfs-8400') {
+    const isBlack = finish.toLowerCase().includes('black');
+    const silverImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791371540/Silver_GFS-8400_Hardware_Combo_Set_wph5fp.webp';
+    const blackImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791371539/Matte_Black_GFS-8400_Hardware_Set_frf0w9.webp';
+    const primaryImg = isBlack ? blackImg : silverImg;
+    const secondaryImg = isBlack ? silverImg : blackImg;
+
+    return [
+      {
+        id: `gfs-8400-${isBlack ? 'black' : 'silver'}-studio`,
+        url: primaryImg,
+        caption: `Combo Set GFS-8400 — ${isBlack ? 'Black Matt' : 'Silver'} Specification`,
+        tag: isBlack ? 'Black' : 'Silver',
+      },
+      {
+        id: `gfs-8400-${isBlack ? 'silver' : 'black'}-variant`,
+        url: secondaryImg,
+        caption: `Combo Set GFS-8400 — ${isBlack ? 'Silver' : 'Black Matt'} Variant`,
+        tag: isBlack ? 'Silver' : 'Black',
+      },
+    ];
+  }
+
+  // Specific handler for GFS-7400 Combo Set
+  if (product.code === 'GFS-7400' || product.id === 'gfs-7400') {
+    const isBlack = finish.toLowerCase().includes('black');
+    const silverImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791371339/Silver_GFS-7400_Glass_Door_Hardware_Set_ixqhz9.webp';
+    const blackImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791371339/GFS-7400_Matte_Black_Hardware_Set_1_ykdbif.webp';
+    const primaryImg = isBlack ? blackImg : silverImg;
+    const secondaryImg = isBlack ? silverImg : blackImg;
+
+    return [
+      {
+        id: `gfs-7400-${isBlack ? 'black' : 'silver'}-studio`,
+        url: primaryImg,
+        caption: `COMBO SET GFS-7400 — ${isBlack ? 'Black Matt' : 'Silver'} Specification`,
+        tag: isBlack ? 'Black' : 'Silver',
+      },
+      {
+        id: `gfs-7400-${isBlack ? 'silver' : 'black'}-variant`,
+        url: secondaryImg,
+        caption: `COMBO SET GFS-7400 — ${isBlack ? 'Silver' : 'Black Matt'} Variant`,
+        tag: isBlack ? 'Silver' : 'Black',
+      },
+    ];
+  }
+
+  // Specific handler for GSL-44G Double Floor Guide
+  if (product.code === 'GSL-44G' || product.id === 'gsl-44g') {
+    const mainImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791366689/Brushed_Stainless_Steel_GLS_ON_Clamp_cbehmv.webp';
+    return [
+      {
+        id: 'gsl-44g-studio',
+        url: mainImg,
+        caption: 'GSL-44G Double Floor Guide — Silver / Stainless Steel Specification',
+        tag: 'Silver',
+      },
+    ];
+  }
+
+  // Specific handler for GSL-44-B3 Aluminium Track (Door + Fix Glass)
+  if (product.code === 'GSL-44-B3' || product.id === 'gsl-44-b3') {
+    const mainImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791366689/GLS_ON_Branded_Aluminium_Channel_eklxlv.webp';
+    return [
+      {
+        id: 'gsl-44-b3-studio',
+        url: mainImg,
+        caption: 'GSL-44-B3 Aluminium Track (Door + Fix Glass) — Aluminium / Silver Specification',
+        tag: 'Silver',
+      },
+    ];
+  }
+
+  // Specific handler for GSL-44-B2 Aluminium Track (Double Door)
+  if (product.code === 'GSL-44-B2' || product.id === 'gsl-44-b2') {
+    const mainImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791366342/Brushed_Aluminum_Double-Channel_Rail_tctysh.webp';
+    return [
+      {
+        id: 'gsl-44-b2-studio',
+        url: mainImg,
+        caption: 'GSL-44-B2 Aluminium Track (Double Door) — Silver / Aluminium Specification',
+        tag: 'Silver',
+      },
+    ];
+  }
+
+  // Specific handler for GSL-44-B1 Aluminium Track (Single)
+  if (product.code === 'GSL-44-B1' || product.id === 'gsl-44-b1') {
+    const mainImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791366165/Brushed_Aluminum_Sliding_Track_with_GLS_ON_Logo_fwauty.webp';
+    return [
+      {
+        id: 'gsl-44-b1-studio',
+        url: mainImg,
+        caption: 'GSL-44-B1 Aluminium Track (Single) — Silver / Aluminium Specification',
+        tag: 'Silver',
+      },
+    ];
+  }
+
+  // Specific handler for GSL-44-A5 Wall to Track Clamp
+  if (product.code === 'GSL-44-A5' || product.id === 'gsl-44-a5') {
+    const mainImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791360944/Brushed_Steel_L-Bracket_Product_Shot_ywz9ra.webp';
+    return [
+      {
+        id: 'gsl-44-a5-studio',
+        url: mainImg,
+        caption: 'GSL-44-A5 Wall to Track Clamp — Silver / Stainless Steel Specification',
+        tag: 'Silver',
+      },
+    ];
+  }
+
+  // Specific handler for GSL-44 A-9 Stopper
+  if (product.code === 'GSL-44 A-9' || product.id === 'gsl-44-a-9') {
+    const mainImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791360764/Ivory_Nylon_Stopper_Clamp_with_Lever_o5znna.webp';
+    return [
+      {
+        id: 'gsl-44-a-9-studio',
+        url: mainImg,
+        caption: 'GSL-44 A-9 Sliding Door Stopper — Natural Off-White / Black Screw Specification',
+        tag: 'Natural off-white',
+      },
+    ];
+  }
+
+  // Specific handler for GSL-33G Floor Guide
+  if (product.code === 'GSL-33G' || product.id === 'gsl-33g') {
+    const isBlack = finish.toLowerCase().includes('black');
+    const silverImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791360215/Brushed_Steel_GLS_ON_Hardware_Clamp_fid6sw.webp';
+    const blackImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791360215/Matte_Black_GLS_ON_Hardware_Mount_ixguog.webp';
+    const primaryImg = isBlack ? blackImg : silverImg;
+    const secondaryImg = isBlack ? silverImg : blackImg;
+
+    return [
+      {
+        id: `gsl-33g-${isBlack ? 'black' : 'silver'}-studio`,
+        url: primaryImg,
+        caption: `GSL-33G Floor Guide — ${isBlack ? 'Black Matt' : 'Silver'} Specification`,
+        tag: isBlack ? 'Black' : 'Silver',
+      },
+      {
+        id: `gsl-33g-${isBlack ? 'silver' : 'black'}-variant`,
+        url: secondaryImg,
+        caption: `GSL-33G Floor Guide — ${isBlack ? 'Silver' : 'Black Matt'} Variant`,
+        tag: isBlack ? 'Silver' : 'Black',
+      },
+    ];
+  }
+
+  // Specific handler for GSL-HN-50 Sliding Door Handle
+  if (product.code === 'GSL-HN-50' || product.id === 'gsl-hn-50') {
+    const isBlack = finish.toLowerCase().includes('black');
+    const silverImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791359613/Brushed_Stainless_Steel_Door_Pull_Knob_xvprrq.webp';
+    const blackImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791359613/Matte_Black_GLS_ON_Door_Pull_ob6stc.webp';
+    const primaryImg = isBlack ? blackImg : silverImg;
+    const secondaryImg = isBlack ? silverImg : blackImg;
+
+    return [
+      {
+        id: `gsl-hn-50-${isBlack ? 'black' : 'silver'}-studio`,
+        url: primaryImg,
+        caption: `GSL-HN-50 Sliding Door Handle — ${isBlack ? 'Black Matt' : 'Silver'} Specification`,
+        tag: isBlack ? 'Black' : 'Silver',
+      },
+      {
+        id: `gsl-hn-50-${isBlack ? 'silver' : 'black'}-variant`,
+        url: secondaryImg,
+        caption: `GSL-HN-50 Sliding Door Handle — ${isBlack ? 'Silver' : 'Black Matt'} Variant`,
+        tag: isBlack ? 'Silver' : 'Black',
+      },
+    ];
+  }
+
   // Specific handler for GSP-01 Iron Assembly
   if (product.code === 'GSP-01' || product.id === 'gsp-01') {
     const mainImg = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791186874/GSP-01_fvenz9.webp';
@@ -2515,6 +2689,88 @@ export const getFinishImages = (product: Product): Record<string, string> => {
   if (product.code === 'GSF-A22' || product.id === 'gsf-a22') {
     return {
       'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791033771/ChatGPT_Image_Oct_3_2026_06_52_21_PM_sy5dtn.webp',
+    };
+  }
+
+  // GFS-8400 finishes with exact Cloudinary URLs
+  if (product.code === 'GFS-8400' || product.id === 'gfs-8400') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791371540/Silver_GFS-8400_Hardware_Combo_Set_wph5fp.webp',
+      'Black': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791371539/Matte_Black_GFS-8400_Hardware_Set_frf0w9.webp',
+    };
+  }
+
+  // GFS-7400 finishes with exact Cloudinary URLs
+  if (product.code === 'GFS-7400' || product.id === 'gfs-7400') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791371339/Silver_GFS-7400_Glass_Door_Hardware_Set_ixqhz9.webp',
+      'Black': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791371339/GFS-7400_Matte_Black_Hardware_Set_1_ykdbif.webp',
+    };
+  }
+
+  // GSL-44G finishes with exact Cloudinary URL
+  if (product.code === 'GSL-44G' || product.id === 'gsl-44g') {
+    const img = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791366689/Brushed_Stainless_Steel_GLS_ON_Clamp_cbehmv.webp';
+    return {
+      'Silver': img,
+    };
+  }
+
+  // GSL-44-B3 finishes with exact Cloudinary URL
+  if (product.code === 'GSL-44-B3' || product.id === 'gsl-44-b3') {
+    const img = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791366689/GLS_ON_Branded_Aluminium_Channel_eklxlv.webp';
+    return {
+      'Silver': img,
+    };
+  }
+
+  // GSL-44-B2 finishes with exact Cloudinary URL
+  if (product.code === 'GSL-44-B2' || product.id === 'gsl-44-b2') {
+    const img = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791366342/Brushed_Aluminum_Double-Channel_Rail_tctysh.webp';
+    return {
+      'Silver': img,
+    };
+  }
+
+  // GSL-44-B1 finishes with exact Cloudinary URL
+  if (product.code === 'GSL-44-B1' || product.id === 'gsl-44-b1') {
+    const img = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791366165/Brushed_Aluminum_Sliding_Track_with_GLS_ON_Logo_fwauty.webp';
+    return {
+      'Silver': img,
+    };
+  }
+
+  // GSL-44-A5 finishes with exact Cloudinary URL
+  if (product.code === 'GSL-44-A5' || product.id === 'gsl-44-a5') {
+    const img = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791360944/Brushed_Steel_L-Bracket_Product_Shot_ywz9ra.webp';
+    return {
+      'Silver': img,
+    };
+  }
+
+  // GSL-44 A-9 finishes with exact Cloudinary URL
+  if (product.code === 'GSL-44 A-9' || product.id === 'gsl-44-a-9') {
+    const img = 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791360764/Ivory_Nylon_Stopper_Clamp_with_Lever_o5znna.webp';
+    return {
+      'Natural off-white': img,
+      'Silver': img,
+      'Black': img,
+    };
+  }
+
+  // GSL-33G finishes with exact Cloudinary URLs
+  if (product.code === 'GSL-33G' || product.id === 'gsl-33g') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791360215/Brushed_Steel_GLS_ON_Hardware_Clamp_fid6sw.webp',
+      'Black': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791360215/Matte_Black_GLS_ON_Hardware_Mount_ixguog.webp',
+    };
+  }
+
+  // GSL-HN-50 finishes with exact Cloudinary URLs
+  if (product.code === 'GSL-HN-50' || product.id === 'gsl-hn-50') {
+    return {
+      'Silver': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791359613/Brushed_Stainless_Steel_Door_Pull_Knob_xvprrq.webp',
+      'Black': 'https://res.cloudinary.com/cbi5mcab/image/upload/v1791359613/Matte_Black_GLS_ON_Door_Pull_ob6stc.webp',
     };
   }
 

@@ -196,47 +196,86 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
           {/* LEFT COLUMN: Large Product Image Gallery (7 cols) */}
           <div className="lg:col-span-7 space-y-4">
             {/* Primary Stage Image */}
-            <div
-              className={`relative ${
-                product.code === 'GLS-11 A1 FS' || product.id === 'gls-11-a1-fs'
-                  ? 'aspect-16/9'
-                  : product.category?.toLowerCase().includes('glass door handle')
-                  ? 'aspect-4/5 sm:aspect-4/5 lg:aspect-3/4 min-h-[460px] sm:min-h-[540px]'
-                  : 'aspect-square sm:aspect-square lg:aspect-16/11'
-              } w-full bg-white border border-[#E2E0D8] rounded-xs overflow-hidden group shadow-2xs flex items-center justify-center`}
-            >
-              <img
-                src={gallery[activeImageIndex]?.url || product.imageUrl}
-                alt={`${product.name} - ${gallery[activeImageIndex]?.caption}`}
-                className={`w-full h-full transition-all duration-500 group-hover:scale-[1.02] ${
-                  product.category?.toLowerCase().includes('glass door handle') ||
-                  product.category?.toLowerCase().includes('spider') ||
-                  product.subcategory?.toLowerCase().includes('spider') ||
-                  product.code === 'GSF-B1'
-                    ? 'object-contain p-4 sm:p-7'
-                    : 'object-cover'
-                }`}
-              />
-
-              {/* Badges Overlay */}
-              <div className="absolute top-4 left-4 flex flex-col gap-2 z-10 pointer-events-none">
-                {product.badge && (
-                  <span className="px-3 py-1 text-[11px] uppercase font-mono tracking-wider bg-[#141414]/90 text-[#FAF9F6] backdrop-blur-xs rounded-xs">
-                    {product.badge}
+            {product.subcategory?.toLowerCase() === 'combo patch set' ||
+            product.code === 'GFS-7400' ||
+            product.code === 'GFS-8400' ? (
+              <div className="w-full bg-white border border-[#E2E0D8] rounded-xs overflow-hidden group shadow-2xs flex flex-col">
+                {/* Top Frame Bar — Badges without covering the image */}
+                <div className="flex flex-wrap items-center justify-between gap-2 px-4 pt-3.5 pb-2 bg-white border-b border-[#F2F0E8]">
+                  <div className="flex flex-wrap items-center gap-2">
+                    {product.badge && (
+                      <span className="px-3 py-1 text-[11px] uppercase font-mono tracking-wider bg-[#141414] text-[#FAF9F6] rounded-xs">
+                        {product.badge}
+                      </span>
+                    )}
+                    <span className="px-2.5 py-0.5 text-[10px] uppercase font-mono tracking-wider bg-[#FAF9F6] border border-[#DDDCD4] text-[#141414] rounded-xs">
+                      {product.availability}
+                    </span>
+                  </div>
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-[#73726B]">
+                    {product.code}
                   </span>
-                )}
-                <span className="px-2.5 py-0.5 text-[10px] uppercase font-mono tracking-wider bg-white/95 border border-[#DDDCD4] text-[#141414] rounded-xs w-fit">
-                  {product.availability}
-                </span>
-              </div>
+                </div>
 
-              {/* View Tag Label */}
-              <div className="absolute bottom-4 left-4 z-10 pointer-events-none">
-                <span className="px-2.5 py-1 text-[10px] uppercase font-mono tracking-wider bg-black/60 text-white backdrop-blur-xs rounded-xs">
-                  {gallery[activeImageIndex]?.caption || 'Studio Specification'}
-                </span>
+                {/* Full Uncropped Product Image */}
+                <div className="w-full bg-white flex items-center justify-center p-3 sm:p-6">
+                  <img
+                    src={gallery[activeImageIndex]?.url || product.imageUrl}
+                    alt={`${product.name} - ${gallery[activeImageIndex]?.caption}`}
+                    className="w-full h-auto max-h-[540px] object-contain transition-all duration-500 group-hover:scale-[1.01]"
+                  />
+                </div>
+
+                {/* Bottom Frame Bar — Specification Caption without covering the image */}
+                <div className="px-4 py-2.5 bg-[#FAF9F6] border-t border-[#F2F0E8] flex items-center justify-between">
+                  <span className="px-2.5 py-1 text-[10px] uppercase font-mono tracking-wider bg-[#141414]/85 text-white rounded-xs">
+                    {gallery[activeImageIndex]?.caption || 'Studio Specification'}
+                  </span>
+                </div>
               </div>
-            </div>
+            ) : (
+              <div
+                className={`relative ${
+                  product.code === 'GLS-11 A1 FS' || product.id === 'gls-11-a1-fs'
+                    ? 'aspect-16/9'
+                    : product.category?.toLowerCase().includes('glass door handle')
+                    ? 'aspect-4/5 sm:aspect-4/5 lg:aspect-3/4 min-h-[460px] sm:min-h-[540px]'
+                    : 'aspect-square sm:aspect-square lg:aspect-16/11'
+                } w-full bg-white border border-[#E2E0D8] rounded-xs overflow-hidden group shadow-2xs flex items-center justify-center`}
+              >
+                <img
+                  src={gallery[activeImageIndex]?.url || product.imageUrl}
+                  alt={`${product.name} - ${gallery[activeImageIndex]?.caption}`}
+                  className={`w-full h-full transition-all duration-500 group-hover:scale-[1.02] ${
+                    product.category?.toLowerCase().includes('glass door handle') ||
+                    product.category?.toLowerCase().includes('spider') ||
+                    product.subcategory?.toLowerCase().includes('spider') ||
+                    product.code === 'GSF-B1'
+                      ? 'object-contain p-4 sm:p-7'
+                      : 'object-cover'
+                  }`}
+                />
+
+                {/* Badges Overlay */}
+                <div className="absolute top-4 left-4 flex flex-col gap-2 z-10 pointer-events-none">
+                  {product.badge && (
+                    <span className="px-3 py-1 text-[11px] uppercase font-mono tracking-wider bg-[#141414]/90 text-[#FAF9F6] backdrop-blur-xs rounded-xs">
+                      {product.badge}
+                    </span>
+                  )}
+                  <span className="px-2.5 py-0.5 text-[10px] uppercase font-mono tracking-wider bg-white/95 border border-[#DDDCD4] text-[#141414] rounded-xs w-fit">
+                    {product.availability}
+                  </span>
+                </div>
+
+                {/* View Tag Label */}
+                <div className="absolute bottom-4 left-4 z-10 pointer-events-none">
+                  <span className="px-2.5 py-1 text-[10px] uppercase font-mono tracking-wider bg-black/60 text-white backdrop-blur-xs rounded-xs">
+                    {gallery[activeImageIndex]?.caption || 'Studio Specification'}
+                  </span>
+                </div>
+              </div>
+            )}
 
             {/* Gallery Thumbnail Strip (Only rendered when product has multiple images) */}
             {gallery.length > 1 && (
@@ -248,6 +287,10 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                     className={`relative ${
                       product.code === 'GLS-11 A1 FS' || product.id === 'gls-11-a1-fs'
                         ? 'aspect-16/9'
+                        : product.subcategory?.toLowerCase() === 'combo patch set' ||
+                          product.code === 'GFS-7400' ||
+                          product.code === 'GFS-8400'
+                        ? 'aspect-square'
                         : product.category?.toLowerCase().includes('glass door handle')
                         ? 'aspect-3/4 sm:aspect-4/5'
                         : 'aspect-[16/9] sm:aspect-[16/9] lg:aspect-square'
@@ -263,8 +306,11 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                       className={`w-full h-full ${
                         product.category?.toLowerCase().includes('glass door handle') ||
                         product.category?.toLowerCase().includes('spider') ||
-                        product.subcategory?.toLowerCase().includes('spider')
-                          ? 'object-contain p-1.5 sm:p-2'
+                        product.subcategory?.toLowerCase().includes('spider') ||
+                        product.subcategory?.toLowerCase() === 'combo patch set' ||
+                        product.code === 'GFS-7400' ||
+                        product.code === 'GFS-8400'
+                          ? 'object-contain p-2 sm:p-3'
                           : 'object-cover'
                       }`}
                     />
@@ -1067,11 +1113,17 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   onClick={() => onSelectProduct(rel)}
                   className="group bg-white border border-[#E2E0D8] hover:border-[#141414] transition-all rounded-xs overflow-hidden cursor-pointer flex flex-col justify-between"
                 >
-                  <div className="aspect-square w-full bg-[#FAF9F6] overflow-hidden border-b border-[#EAE7DF]">
+                  <div className="aspect-square w-full bg-[#FAF9F6] overflow-hidden border-b border-[#EAE7DF] flex items-center justify-center">
                     <img
                       src={rel.imageUrl}
                       alt={rel.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className={`w-full h-full ${
+                        rel.subcategory?.toLowerCase() === 'combo patch set' ||
+                        rel.code === 'GFS-7400' ||
+                        rel.code === 'GFS-8400'
+                          ? 'object-contain p-3'
+                          : 'object-cover'
+                      } group-hover:scale-105 transition-transform duration-500`}
                     />
                   </div>
                   <div className="p-4 space-y-2">

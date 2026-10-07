@@ -75,6 +75,27 @@ export const CategoryCollectionPage: React.FC<CategoryCollectionPageProps> = ({
     );
   }, [categoryName, categoryMeta]);
 
+  // Check if current view is Patch Fittings or its subcategories
+  const isPatchFittingContext = useMemo(() => {
+    const lower = categoryName.toLowerCase();
+    return (
+      lower === 'patch fittings' ||
+      lower === 'combo patch set' ||
+      categoryMeta.parentCategory === 'Patch Fittings'
+    );
+  }, [categoryName, categoryMeta]);
+
+  // Check if current view is Shower Sliding System or its subcategories
+  const isShowerSlidingContext = useMemo(() => {
+    const lower = categoryName.toLowerCase();
+    return (
+      lower === 'shower sliding system' ||
+      lower === 'accessories' ||
+      lower === 'sliding track' ||
+      categoryMeta.parentCategory === 'Shower Sliding System'
+    );
+  }, [categoryName, categoryMeta]);
+
   // All products strictly belonging to this category or subcategory
   const categoryProducts = useMemo(() => {
     const target = categoryName.toLowerCase();
@@ -87,6 +108,21 @@ export const CategoryCollectionPage: React.FC<CategoryCollectionPageProps> = ({
           p.subcategory?.toLowerCase().includes('splice') ||
           p.subcategory?.toLowerCase().includes('routel')
         );
+      }
+      if (target === 'patch fittings') {
+        return p.category.toLowerCase() === 'patch fittings' && !p.subcategory;
+      }
+      if (target === 'combo patch set') {
+        return p.subcategory?.toLowerCase() === 'combo patch set';
+      }
+      if (target === 'shower sliding system') {
+        return p.category.toLowerCase() === 'shower sliding system' && !p.subcategory;
+      }
+      if (target === 'accessories') {
+        return p.subcategory?.toLowerCase() === 'accessories';
+      }
+      if (target === 'sliding track') {
+        return p.subcategory?.toLowerCase() === 'sliding track';
       }
       return (
         p.category.toLowerCase() === target ||
@@ -389,6 +425,80 @@ export const CategoryCollectionPage: React.FC<CategoryCollectionPageProps> = ({
           </div>
         </div>
 
+        {/* 3.4 DEDICATED PATCH FITTINGS SUB-CATEGORY SELECTOR */}
+        {isPatchFittingContext && (
+          <div className="bg-[#EDEAE2] border border-[#DDDCD4] rounded-xs p-5 sm:p-6 mb-8">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+              <div>
+                <div className="inline-flex items-center gap-2 text-[10px] uppercase font-mono tracking-widest text-[#73726B] mb-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#141414]" />
+                  <span>Patch Fittings Categories</span>
+                </div>
+                <h3 className="text-base sm:text-lg font-medium text-[#141414]">
+                  Patch Fittings &amp; Combo Patch Sets
+                </h3>
+              </div>
+              <span className="text-xs font-mono text-[#73726B]">
+                Select Sub-Category
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <button
+                onClick={() => onSelectCategory('Patch Fittings')}
+                className={`p-3.5 text-left rounded-xs border transition-all flex items-center gap-3.5 ${
+                  categoryName.toLowerCase() === 'patch fittings'
+                    ? 'bg-[#141414] text-[#FAF9F6] border-[#141414] shadow-xs'
+                    : 'bg-white text-[#2E2E2A] border-[#DDDCD4] hover:border-[#141414]'
+                }`}
+              >
+                <div className="w-12 h-12 rounded-2xs bg-white border border-[#E0DED5] overflow-hidden shrink-0 flex items-center justify-center">
+                  <img
+                    src="https://res.cloudinary.com/cbi5mcab/image/upload/v1789997542/GPF-40_S_f8mxdl.webp"
+                    alt="Patch Fittings"
+                    className="w-full h-full object-contain p-1"
+                  />
+                </div>
+                <div>
+                  <div className="text-[10px] font-mono tracking-wider opacity-70 mb-0.5">
+                    MAIN COLLECTION
+                  </div>
+                  <div className="text-xs font-medium">Patch Fittings</div>
+                  <div className="mt-1 text-[10px] font-mono opacity-75">
+                    Individual Patch Fittings &amp; Floor Hinges
+                  </div>
+                </div>
+              </button>
+
+              <button
+                onClick={() => onSelectCategory('Combo Patch Set')}
+                className={`p-3.5 text-left rounded-xs border transition-all flex items-center gap-3.5 ${
+                  categoryName.toLowerCase() === 'combo patch set'
+                    ? 'bg-[#141414] text-[#FAF9F6] border-[#141414] shadow-xs'
+                    : 'bg-white text-[#2E2E2A] border-[#DDDCD4] hover:border-[#141414]'
+                }`}
+              >
+                <div className="w-12 h-12 rounded-2xs bg-white border border-[#E0DED5] overflow-hidden shrink-0 flex items-center justify-center">
+                  <img
+                    src="https://res.cloudinary.com/cbi5mcab/image/upload/v1791371339/Silver_GFS-7400_Glass_Door_Hardware_Set_ixqhz9.webp"
+                    alt="Combo Patch Set"
+                    className="w-full h-full object-contain p-1"
+                  />
+                </div>
+                <div>
+                  <div className="text-[10px] font-mono tracking-wider opacity-70 mb-0.5">
+                    SUB-CATEGORY
+                  </div>
+                  <div className="text-xs font-medium">Combo Patch Set</div>
+                  <div className="mt-1 text-[10px] font-mono opacity-75">
+                    Complete Combo Patch Hardware Sets
+                  </div>
+                </div>
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* 3.5 DEDICATED SPIDER FITTING 5-CATEGORY SELECTOR */}
         {isSpiderContext && (
           <div className="bg-[#EDEAE2] border border-[#DDDCD4] rounded-xs p-5 sm:p-6 mb-8">
@@ -461,6 +571,106 @@ export const CategoryCollectionPage: React.FC<CategoryCollectionPageProps> = ({
                   </button>
                 );
               })}
+            </div>
+          </div>
+        )}
+
+        {/* 3.6 DEDICATED SHOWER SLIDING SYSTEM SUB-CATEGORY SELECTOR */}
+        {isShowerSlidingContext && (
+          <div className="bg-[#EDEAE2] border border-[#DDDCD4] rounded-xs p-5 sm:p-6 mb-8">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+              <div>
+                <div className="inline-flex items-center gap-2 text-[10px] uppercase font-mono tracking-widest text-[#73726B] mb-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#141414]" />
+                  <span>Shower Sliding System Categories</span>
+                </div>
+                <h3 className="text-base sm:text-lg font-medium text-[#141414]">
+                  Sliding Sets &amp; Accessories
+                </h3>
+              </div>
+              <span className="text-xs font-mono text-[#73726B]">
+                Select Sub-Category
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              <button
+                onClick={() => onSelectCategory('Shower Sliding System')}
+                className={`p-3.5 text-left rounded-xs border transition-all flex items-center gap-3.5 ${
+                  categoryName.toLowerCase() === 'shower sliding system'
+                    ? 'bg-[#141414] text-[#FAF9F6] border-[#141414] shadow-xs'
+                    : 'bg-white text-[#2E2E2A] border-[#DDDCD4] hover:border-[#141414]'
+                }`}
+              >
+                <div className="w-12 h-12 rounded-2xs bg-white border border-[#E0DED5] overflow-hidden shrink-0 flex items-center justify-center">
+                  <img
+                    src="https://res.cloudinary.com/cbi5mcab/image/upload/v1790690879/GLS-11_A1_S_k3zmh4.webp"
+                    alt="Shower Sliding System"
+                    className="w-full h-full object-contain p-1"
+                  />
+                </div>
+                <div>
+                  <div className="text-[10px] font-mono tracking-wider opacity-70 mb-0.5">
+                    MAIN COLLECTION
+                  </div>
+                  <div className="text-xs font-medium">Shower Sliding System Sets</div>
+                  <div className="mt-1 text-[10px] font-mono opacity-75">
+                    Complete Sliding Hardware Sets
+                  </div>
+                </div>
+              </button>
+
+              <button
+                onClick={() => onSelectCategory('Accessories')}
+                className={`p-3.5 text-left rounded-xs border transition-all flex items-center gap-3.5 ${
+                  categoryName.toLowerCase() === 'accessories'
+                    ? 'bg-[#141414] text-[#FAF9F6] border-[#141414] shadow-xs'
+                    : 'bg-white text-[#2E2E2A] border-[#DDDCD4] hover:border-[#141414]'
+                }`}
+              >
+                <div className="w-12 h-12 rounded-2xs bg-white border border-[#E0DED5] overflow-hidden shrink-0 flex items-center justify-center">
+                  <img
+                    src="https://res.cloudinary.com/cbi5mcab/image/upload/v1791359613/Brushed_Stainless_Steel_Door_Pull_Knob_xvprrq.webp"
+                    alt="Accessories"
+                    className="w-full h-full object-contain p-1"
+                  />
+                </div>
+                <div>
+                  <div className="text-[10px] font-mono tracking-wider opacity-70 mb-0.5">
+                    SUB-CATEGORY
+                  </div>
+                  <div className="text-xs font-medium">Accessories</div>
+                  <div className="mt-1 text-[10px] font-mono opacity-75">
+                    Sliding Door Handles &amp; Hardware
+                  </div>
+                </div>
+              </button>
+
+              <button
+                onClick={() => onSelectCategory('Sliding Track')}
+                className={`p-3.5 text-left rounded-xs border transition-all flex items-center gap-3.5 ${
+                  categoryName.toLowerCase() === 'sliding track'
+                    ? 'bg-[#141414] text-[#FAF9F6] border-[#141414] shadow-xs'
+                    : 'bg-white text-[#2E2E2A] border-[#DDDCD4] hover:border-[#141414]'
+                }`}
+              >
+                <div className="w-12 h-12 rounded-2xs bg-white border border-[#E0DED5] overflow-hidden shrink-0 flex items-center justify-center">
+                  <img
+                    src="https://res.cloudinary.com/cbi5mcab/image/upload/v1791366165/Brushed_Aluminum_Sliding_Track_with_GLS_ON_Logo_fwauty.webp"
+                    alt="Sliding Track"
+                    className="w-full h-full object-contain p-1"
+                  />
+                </div>
+                <div>
+                  <div className="text-[10px] font-mono tracking-wider opacity-70 mb-0.5">
+                    SUB-CATEGORY
+                  </div>
+                  <div className="text-xs font-medium">Sliding Track</div>
+                  <div className="mt-1 text-[10px] font-mono opacity-75">
+                    Extruded Aluminium Sliding Tracks
+                  </div>
+                </div>
+              </button>
             </div>
           </div>
         )}
@@ -614,10 +824,14 @@ export const CategoryCollectionPage: React.FC<CategoryCollectionPageProps> = ({
                       src={product.imageUrl}
                       alt={product.name}
                       className={`w-full h-full ${
-                        product.category?.toLowerCase().includes('glass door handle') ||
-                        product.category?.toLowerCase().includes('spider') ||
-                        product.subcategory?.toLowerCase().includes('spider') ||
-                        product.code === 'GSF-B1'
+                        product.subcategory?.toLowerCase() === 'combo patch set' ||
+                        product.code === 'GFS-7400' ||
+                        product.code === 'GFS-8400'
+                          ? 'object-contain px-3 pt-9 pb-8'
+                          : product.category?.toLowerCase().includes('glass door handle') ||
+                            product.category?.toLowerCase().includes('spider') ||
+                            product.subcategory?.toLowerCase().includes('spider') ||
+                            product.code === 'GSF-B1'
                           ? 'object-contain p-3.5 sm:p-4'
                           : 'object-cover'
                       } group-hover:scale-[1.04] transition-transform duration-500 ease-out`}
@@ -693,6 +907,223 @@ export const CategoryCollectionPage: React.FC<CategoryCollectionPageProps> = ({
                 </div>
               );
             })}
+
+            {/* Sub-Category Card for "Combo Patch Set" inside Patch Fittings */}
+            {categoryName.toLowerCase() === 'patch fittings' && (
+              <div
+                id="subcategory-card-combo-patch-set"
+                onClick={() => onSelectCategory('Combo Patch Set')}
+                className="group bg-[#F4F2EC] border border-[#E2E0D8] hover:border-[#141414] transition-all duration-300 rounded-xs flex flex-col justify-between overflow-hidden cursor-pointer"
+              >
+                {/* Top Image Container */}
+                <div className="relative aspect-square w-full bg-white overflow-hidden border-b border-[#E4E2DA] flex items-center justify-center">
+                  <img
+                    src="https://res.cloudinary.com/cbi5mcab/image/upload/v1791371339/Silver_GFS-7400_Glass_Door_Hardware_Set_ixqhz9.webp"
+                    alt="Combo Patch Set"
+                    className="w-full h-full object-contain px-3 pt-9 pb-8 group-hover:scale-[1.04] transition-transform duration-500 ease-out"
+                  />
+
+                  {/* Sub-category Badge */}
+                  <div className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3">
+                    <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 text-[9px] sm:text-[10px] uppercase font-mono tracking-wider bg-[#141414]/90 text-[#FAF9F6] backdrop-blur-xs rounded-xs">
+                      SUB-CATEGORY
+                    </span>
+                  </div>
+
+                  {/* Bottom Indicator Badge over image */}
+                  <div className="absolute bottom-2.5 left-2.5 sm:bottom-3 sm:left-3">
+                    <span className="px-2 py-0.5 text-[10px] font-mono tracking-wider bg-[#141414] text-[#FAF9F6] rounded-2xs">
+                      COMBO PATCH SET
+                    </span>
+                  </div>
+                </div>
+
+                {/* Body Content */}
+                <div className="p-3.5 sm:p-5 flex-1 flex flex-col justify-between">
+                  <div>
+                    <span className="text-[9px] uppercase font-mono tracking-[0.18em] text-[#73726B] block mb-1">
+                      PATCH FITTINGS
+                    </span>
+                    <h3 className="text-xs sm:text-sm font-medium text-[#141414] group-hover:text-black line-clamp-2 leading-snug mb-1.5">
+                      Combo Patch Set
+                    </h3>
+                    <p className="text-[11px] text-[#666660] line-clamp-2 leading-relaxed mb-3">
+                      Complete 5-piece floor spring and patch fitting hardware sets for glass door assemblies.
+                    </p>
+                  </div>
+
+                  <div className="pt-3 border-t border-[#E8E6DE]">
+                    <div className="flex items-center justify-between mb-3">
+                      <div>
+                        <span className="text-[9px] uppercase font-mono tracking-wider text-[#73726B] block">
+                          COLLECTION
+                        </span>
+                        <span className="text-sm sm:text-base font-mono font-medium text-[#141414]">
+                          {PRODUCTS_CATALOGUE.filter((p) => p.subcategory?.toLowerCase() === 'combo patch set').length} Items
+                        </span>
+                      </div>
+                      <ArrowUpRight className="w-4 h-4 text-[#AAA9A0] group-hover:text-[#141414] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    </div>
+
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectCategory('Combo Patch Set');
+                      }}
+                      className="w-full py-2 px-3 bg-[#141414] hover:bg-black text-[#FAF9F6] text-[11px] uppercase tracking-wider rounded-xs flex items-center justify-center gap-1.5 transition-colors"
+                    >
+                      <span>Explore Combo Sets</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Sub-Category Card for "Accessories" inside Shower Sliding System */}
+            {categoryName.toLowerCase() === 'shower sliding system' && (
+              <div
+                id="subcategory-card-shower-sliding-accessories"
+                onClick={() => onSelectCategory('Accessories')}
+                className="group bg-[#F4F2EC] border border-[#E2E0D8] hover:border-[#141414] transition-all duration-300 rounded-xs flex flex-col justify-between overflow-hidden cursor-pointer"
+              >
+                {/* Top Image Container */}
+                <div className="relative aspect-square w-full bg-white overflow-hidden border-b border-[#E4E2DA] flex items-center justify-center">
+                  <img
+                    src="https://res.cloudinary.com/cbi5mcab/image/upload/v1791359613/Brushed_Stainless_Steel_Door_Pull_Knob_xvprrq.webp"
+                    alt="Shower Sliding System Accessories"
+                    className="w-full h-full object-contain p-4 group-hover:scale-[1.04] transition-transform duration-500 ease-out"
+                  />
+
+                  {/* Sub-category Badge */}
+                  <div className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3">
+                    <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 text-[9px] sm:text-[10px] uppercase font-mono tracking-wider bg-[#141414]/90 text-[#FAF9F6] backdrop-blur-xs rounded-xs">
+                      SUB-CATEGORY
+                    </span>
+                  </div>
+
+                  {/* Bottom Indicator Badge over image */}
+                  <div className="absolute bottom-2.5 left-2.5 sm:bottom-3 sm:left-3">
+                    <span className="px-2 py-0.5 text-[10px] font-mono tracking-wider bg-[#141414] text-[#FAF9F6] rounded-2xs">
+                      ACCESSORIES
+                    </span>
+                  </div>
+                </div>
+
+                {/* Body Content */}
+                <div className="p-3.5 sm:p-5 flex-1 flex flex-col justify-between">
+                  <div>
+                    <span className="text-[9px] uppercase font-mono tracking-[0.18em] text-[#73726B] block mb-1">
+                      SHOWER SLIDING SYSTEM
+                    </span>
+                    <h3 className="text-xs sm:text-sm font-medium text-[#141414] group-hover:text-black line-clamp-2 leading-snug mb-1.5">
+                      Accessories
+                    </h3>
+                    <p className="text-[11px] text-[#666660] line-clamp-2 leading-relaxed mb-3">
+                      Sliding door handles, fittings, and hardware accessories for shower sliding systems.
+                    </p>
+                  </div>
+
+                  <div className="pt-3 border-t border-[#E8E6DE]">
+                    <div className="flex items-center justify-between mb-3">
+                      <div>
+                        <span className="text-[9px] uppercase font-mono tracking-wider text-[#73726B] block">
+                          COLLECTION
+                        </span>
+                        <span className="text-sm sm:text-base font-mono font-medium text-[#141414]">
+                          {PRODUCTS_CATALOGUE.filter((p) => p.subcategory?.toLowerCase() === 'accessories').length} Items
+                        </span>
+                      </div>
+                      <ArrowUpRight className="w-4 h-4 text-[#AAA9A0] group-hover:text-[#141414] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    </div>
+
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectCategory('Accessories');
+                      }}
+                      className="w-full py-2 px-3 bg-[#141414] hover:bg-black text-[#FAF9F6] text-[11px] uppercase tracking-wider rounded-xs flex items-center justify-center gap-1.5 transition-colors"
+                    >
+                      <span>Explore Accessories</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Sub-Category Card for "Sliding Track" inside Shower Sliding System & Accessories */}
+            {(categoryName.toLowerCase() === 'shower sliding system' ||
+              categoryName.toLowerCase() === 'accessories') && (
+              <div
+                id="subcategory-card-sliding-track"
+                onClick={() => onSelectCategory('Sliding Track')}
+                className="group bg-[#F4F2EC] border border-[#E2E0D8] hover:border-[#141414] transition-all duration-300 rounded-xs flex flex-col justify-between overflow-hidden cursor-pointer"
+              >
+                {/* Top Image Container */}
+                <div className="relative aspect-square w-full bg-white overflow-hidden border-b border-[#E4E2DA] flex items-center justify-center">
+                  <img
+                    src="https://res.cloudinary.com/cbi5mcab/image/upload/v1791366165/Brushed_Aluminum_Sliding_Track_with_GLS_ON_Logo_fwauty.webp"
+                    alt="Sliding Track"
+                    className="w-full h-full object-contain p-4 group-hover:scale-[1.04] transition-transform duration-500 ease-out"
+                  />
+
+                  {/* Sub-category Badge */}
+                  <div className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3">
+                    <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 text-[9px] sm:text-[10px] uppercase font-mono tracking-wider bg-[#141414]/90 text-[#FAF9F6] backdrop-blur-xs rounded-xs">
+                      SUB-CATEGORY
+                    </span>
+                  </div>
+
+                  {/* Bottom Indicator Badge over image */}
+                  <div className="absolute bottom-2.5 left-2.5 sm:bottom-3 sm:left-3">
+                    <span className="px-2 py-0.5 text-[10px] font-mono tracking-wider bg-[#141414] text-[#FAF9F6] rounded-2xs">
+                      SLIDING TRACK
+                    </span>
+                  </div>
+                </div>
+
+                {/* Body Content */}
+                <div className="p-3.5 sm:p-5 flex-1 flex flex-col justify-between">
+                  <div>
+                    <span className="text-[9px] uppercase font-mono tracking-[0.18em] text-[#73726B] block mb-1">
+                      SHOWER SLIDING SYSTEM
+                    </span>
+                    <h3 className="text-xs sm:text-sm font-medium text-[#141414] group-hover:text-black line-clamp-2 leading-snug mb-1.5">
+                      Sliding Track
+                    </h3>
+                    <p className="text-[11px] text-[#666660] line-clamp-2 leading-relaxed mb-3">
+                      Extruded aluminium open-channel sliding track profiles for sliding door systems.
+                    </p>
+                  </div>
+
+                  <div className="pt-3 border-t border-[#E8E6DE]">
+                    <div className="flex items-center justify-between mb-3">
+                      <div>
+                        <span className="text-[9px] uppercase font-mono tracking-wider text-[#73726B] block">
+                          COLLECTION
+                        </span>
+                        <span className="text-sm sm:text-base font-mono font-medium text-[#141414]">
+                          {PRODUCTS_CATALOGUE.filter((p) => p.subcategory?.toLowerCase() === 'sliding track').length} Items
+                        </span>
+                      </div>
+                      <ArrowUpRight className="w-4 h-4 text-[#AAA9A0] group-hover:text-[#141414] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    </div>
+
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectCategory('Sliding Track');
+                      }}
+                      className="w-full py-2 px-3 bg-[#141414] hover:bg-black text-[#FAF9F6] text-[11px] uppercase tracking-wider rounded-xs flex items-center justify-center gap-1.5 transition-colors"
+                    >
+                      <span>Explore Sliding Track</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         )}
 
